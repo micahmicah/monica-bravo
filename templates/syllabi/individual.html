@@ -1,0 +1,44 @@
+{# ------------------------------------------------------- #}
+{# INDIVIDUAL VIEW FOR EACH syllabi #}
+{# This page can use any data from http:localhost:2000/cms/#/form/syllabi/ #}
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+{# ------------------------------------------------------- #}
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+{# This sets our page <title>. It will append this syllabi's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block content %}
+  <p><a href="{{ url('syllabi') }}">View a list of all syllabi</a></p>
+  <h2>{{ item.name }}</h2>
+  {{ item.course_description|safe }}
+  
+  {% for row in item.schedule  %}
+  <div class="week claerfix">
+      <h3 class="week-number">Week {{row.week}}</h3>
+      <h3>{{row.subject}}</h3>
+      <p>{{row.day_one}}</p>
+      <div class="readings">
+         {{ row.day_one_readings|safe }}
+       </div>
+       <p><strong>{{ row.day_one_assignment }}</strong></p>
+       <p>{{row.day_two}}</p>
+       <div class="readings">
+         {{ row.day_two_readings|safe }}
+       </div>
+       <p><strong>{{ row.day_two_assignment }}</strong></p>
+  </div>  
+  {% endfor %}
+
+ 
+  <div class="additional-bibliography">
+   <h3>Additoinal Bibliography</h3>
+    {{item.additional_bibliography|safe}}
+  </div>
+
+  
+  
+{% endblock %}

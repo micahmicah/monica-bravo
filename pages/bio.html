@@ -1,0 +1,175 @@
+{# ------------------------------------------------------- #}
+{# ONE OFF VIEW bio #}
+{# This page can use any data from http:localhost:2000/cms/#/form/bio/ #}
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+{# ------------------------------------------------------- #}
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+{# This sets our page <title>. It will append this bio's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ cms.bio.name }}{% endblock %}
+{% block content %}
+  <h1>{{ cms.bio.name }}</h1>
+  <ul>
+      <li>
+        <strong>Name: </strong>
+        {{ cms.bio.name }}
+      </li>
+      <li>
+        <strong>Create Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ cms.bio.create_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Last Updated: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ cms.bio.last_updated|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Portrait: </strong>
+        {# You can pull out a lot more information from the image property. Info here: #}
+        {# http://www.webhook.com/docs/widget-template-reference/#image #}
+        <img src="{{ cms.bio.portrait|imageSize(200) }}" />
+      </li>
+      <li>
+        <strong>CV: </strong>
+        {# Download link. #}
+        <a href="{{ cms.bio.cv.url }}">Click to download</a>
+      </li>
+      <li>
+        <strong>Bio: </strong>
+        {{ cms.bio.bio|safe }}
+      </li>
+      <li>
+        <strong>Current Affiliaton: </strong>
+        {{ cms.bio.current_affiliaton }}
+      </li>
+      <li>
+        <strong>Institution: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in cms.bio.institution %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
+        <strong>Department: </strong>
+        {{ cms.bio.department }}
+      </li>
+      <li>
+        <strong>Contact: </strong>
+        {{ cms.bio.contact }}
+      </li>
+      <li>
+        <strong>University Address: </strong>
+        <address>
+          {{ cms.bio.university_address.street1 }}<br/>
+          {% if cms.bio.university_address.street2 %}{{ cms.bio.university_address.street2 }}<br/>{% endif %}
+          {{ cms.bio.university_address.city }}, {{ cms.bio.university_address.state }}. {{ cms.bio.university_address.country }} {{ cms.bio.university_address.zip }}
+        </address>
+      </li>
+      <li>
+        <strong>Office Phone: </strong>
+        {{ cms.bio.office_phone }}
+      </li>
+      <li>
+        <strong>Cell: </strong>
+        {{ cms.bio.cell }}
+      </li>
+      <li>
+        <strong>University Email: </strong>
+        {{ cms.bio.university_email }}
+      </li>
+      <li>
+        <strong>Personal Email: </strong>
+        {{ cms.bio.personal_email }}
+      </li>
+      <li>
+        <strong>Professional Affiliations: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in cms.bio.professional_affiliations %}
+            <li>
+              <strong>Affiliation: </strong>
+              {{ row.affiliation }}
+            </li>
+            <li>
+              <strong>Timeframe: </strong>
+              {{ row.timeframe }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>Languages: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in cms.bio.languages %}
+            <li>
+              <strong>Language: </strong>
+              {{ row.language }}
+            </li>
+            <li>
+              <strong>Ability: </strong>
+              {{ row.ability }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>References: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in cms.bio.references %}
+            <li>
+              <strong>Person: </strong>
+              {{ row.person.first }} {{ row.person.last }}
+            </li>
+            <li>
+              <strong>Title: </strong>
+              {{ row.title }}
+            </li>
+            <li>
+              <strong>Institution: </strong>
+              {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+                {% for relation in row.institution %}
+                  {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+                  <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+                {% endfor %}
+            </li>
+            <li>
+              <strong>Department: </strong>
+              {{ row.department }}
+            </li>
+            <li>
+              <strong>Address: </strong>
+              <address>
+                  {{ row.address.street1 }}<br/>
+                  {% if row.address.street2 %}{{ row.address.street2 }}<br/>{% endif %}
+                  {{ row.address.city }}, {{ row.address.state }}. {{ row.address.country }} {{ row.address.zip }}
+                </address>
+            </li>
+            <li>
+              <strong>Phone number: </strong>
+              {{ row.phone_number }}
+            </li>
+            <li>
+              <strong>Email: </strong>
+              {{ row.email }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ cms.bio.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ cms.bio.slug }}
+      </li>
+  </ul>
+{% endblock %}

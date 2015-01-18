@@ -1,0 +1,79 @@
+p,li,address,h1,h2,h3,h4,h5,h6{
+	text-rendering:optimizeLegibility;
+}
+
+
+p,
+li, 
+address,
+td{
+	font-family:Georgia;
+	line-height:1.6em;
+}
+
+p{
+	max-width:700px;
+}
+
+address{
+	font-style:normal;
+}
+
+h1{
+	margin-bottom:0em;
+	font-family:Georgia;
+	font-weight:normal;
+	font-size:20px;
+	margin-right:1em;
+	display:inline-block;
+	@media screen and (max-width:599px){
+		margin-bottom:1em;
+	}
+	@media screen and (min-width:600px){
+		display:inline-block;	
+	}
+}
+
+h2{
+	font-family:Georgia;
+	font-weight:normal;
+}
+
+h3{
+	margin-top:3em;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	font-size:0.9em;
+	line-height:1.7em;	
+}
+
+
+h4{
+	margin-bottom:0em;
+}
+
+h4 + p{
+	margin-top:0.25em;
+}
+
+
+
+.cv p, 
+.degree p, 
+.exhibition p, 
+.publication p{
+	margin-left:2em;
+	text-indent:-2em;
+}
+
+.course-information{
+	margin-left:2em;
+}
+
+div.accolades{
+	margin-top:-1em;
+	text-indent:2em;
+	:first-child{
+		text-indent:0em;
+	}
+}

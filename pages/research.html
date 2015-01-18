@@ -1,0 +1,46 @@
+{# ------------------------------------------------------- #}
+{# ONE OFF VIEW research #}
+{# This page can use any data from http:localhost:2000/cms/#/form/research/ #}
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+{# ------------------------------------------------------- #}
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+{# This sets our page <title>. It will append this research's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ cms.research.name }}{% endblock %}
+{% block content %}
+
+  <h2>{{ cms.research.name }}</h2>
+  {{ cms.research.research_statement|safe }}
+
+  <h3>{{ cms.research.dissertation_title }}</h3>
+  {{ cms.research.dissertation_abstract|safe }}
+
+  <h3>Grants and Fellowships</h3>
+  {% for row in cms.research.grants_and_fellowships %}
+    <p>{{ row.name}}, {{ row.institution.name }},  {{ row.timeframe }}
+      
+    </p>
+    {% endfor %}
+
+  <h3>Publications</h3>
+  {% for row in cms.research.publications  %}
+  <div class="publication">
+    <p>{{row.title|markish|safe}} {{row.journal|markish|safe}} {{row.timeframe}}</p>
+  </div>
+  {% endfor %}
+
+  <h3>Exhibitions Curated</h3>
+  {% for row in cms.research.exhibitions_curated  %}
+  <div class="exhibition">
+    <p>{{row.title|markish|safe}} {{row.location.street1}}, {{row.location.city}}, {{row.location.state}}, {{row.role}}, {{row.timeframe}} </p>
+  </div>
+  {% endfor %}
+        
+
+
+    
+{% endblock %}

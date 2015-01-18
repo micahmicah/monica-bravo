@@ -1,0 +1,48 @@
+{# ------------------------------------------------------- #}
+
+{# YOUR HOMEPAGE #}
+
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+
+{# ------------------------------------------------------- #}
+
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+
+{# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
+{% block title %}{% parent %} - Homepage{% endblock %}
+
+{% block content %}
+  
+
+  <div class="hero" style="background-image:url('{{ cms.bio.portrait|imageSize(800) }}');">
+    
+  </div>
+  
+  <div class="clearfix">
+    <div class="intro">
+      <h2>Current Affiliation: {{cms.bio.department}}
+        {% for relation in cms.bio.institution %}
+          {{relation.name}}
+        {% endfor %}
+    
+      </h2>
+      <p>{{cms.bio.bio|safe}}</p>
+    </div>
+  
+    <div class="news">
+      <ul>
+      {% for item in cms.news|sort('publis_date', true)|slice(0,3)  %}
+          <li>
+            <p class="date">{{item.publish_date|date('M j Y')}}</p>
+            {{item.news|safe}}
+          </li>
+      {% endfor %}
+      </ul>
+    </div></div>
+{% endblock %}

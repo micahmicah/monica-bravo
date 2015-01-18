@@ -1,0 +1,295 @@
+// VARIABLES -----------------------------
+$link-color: #05d2c1;
+$light-gray: rgb(230,230,230);
+$middle-gray: rgb(200,200,200);
+
+
+body{
+	margin:0em auto 0em auto;
+	max-width:1000px;
+	padding:0em 2em 10em 2em;
+	// border-top:2px solid $link-color;
+	border-bottom:2px solid $link-color;
+	opacity:0.0;
+	@include transition(opacity 0.12s ease-in);
+}
+
+body.loaded{
+	opacity:1.0;
+
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+
+// LINKS ---------------------------------
+a:link,
+a:visited{
+	color:$link-color;
+	text-decoration:none;
+}
+
+
+
+// HEADER --------------------------------
+.logo{
+	a{
+		color:black;
+	}
+}
+
+// MAIN NAV ------------------------------
+
+button{
+	background:none;
+	border:2px solid $light-gray;
+	border:none;
+	color:$middle-gray;
+	text-transform:uppercase;
+	font-size:0.8em;
+	// font-weight:bold;
+	letter-spacing:2px;
+	@media screen and (min-width:600px){
+		display:none;
+	}
+}
+
+button:active{
+	
+}
+
+button:focus{
+	background:$link-color;
+	outline:none;
+	color:white;
+}
+
+nav{
+	display:none;
+	@media screen and (min-width:600px){
+		display:inline-block;
+		// display:block;	
+	}
+	
+	ul{
+		padding:0em;
+		list-style:none;
+		
+	}
+
+	li{
+			text-transform:uppercase;
+			letter-spacing: 1px;
+			font-family:Arial;
+			font-weight:bold;
+			font-size:0.8em;
+			border-bottom:1px solid rgb(240,240,240);
+			a{
+				display:block;
+				padding:0.5em 0.25em;
+				border-top:1px solid white;
+				border-bottom:1px solid white;
+			}
+			a:hover{
+				// background:$light-gray;
+				color:black;
+				border-top:1px solid $light-gray;
+				border-bottom:1px solid $light-gray;
+			}
+		}
+	@media screen and (min-width:600px){
+		li{
+			display:inline-block;
+			padding:0.5em;
+			border-bottom:none;
+			
+		}		
+	}
+}
+.activated{
+	display:block;
+}
+.nav-bar{
+	width:100%;
+	border-top:2px solid $link-color;
+	margin-top:0em;
+	// position:absolute;
+	background:white;
+	top:0em;
+}
+.nav-bar.fixed{
+	position:fixed;
+	top:0em;
+	background:white;
+	z-index:10;
+
+}
+
+//  SEARCH --------------------------------
+form{
+	display:none;
+}
+
+// HOMEPAGE
+.intro{
+	@media screen and (min-width:600px){
+		width:66%;
+		float:left;
+		margin-right:2em;
+	}
+	
+}
+
+.news{
+	border-top:1px solid $light-gray;
+	@media screen and (min-width:600px){
+		width:30%;
+		float:left;
+		border-top:none;
+	}
+	.date{
+		font-family:Arial;
+		text-transform:uppercase;
+		letter-spacing:1px;
+		font-size:0.7em;
+		font-weight:bold;
+		color:$middle-gray;
+		margin-bottom:0px;
+	}
+	p{
+		margin-left:0em;
+	}
+	p + p{
+		margin-top:0.25em;
+	}
+	ul{
+		padding-left:0em;
+	}
+	h3{
+		margin-top:1.75em;
+	}
+	p{
+		max-width:100%;
+	}
+	li{
+		list-style:none;
+		border-bottom:1px solid $light-gray;
+	}
+}
+
+.news:after{
+	clear:both;
+}
+
+// SYLLABI --------------------------------
+figure[data-type=image] {
+	display:inline-block;
+	width:auto;
+}
+figure[data-type=image].wy-figure-large{
+	width:auto;
+}
+
+figure[data-type=image] img{
+	width:auto;
+}
+figure figcaption{
+	width:auto;
+}
+
+figure[data-type=table]{
+	margin:0em;
+	@media screen and (min-width:600px){
+		margin:1em 2em;
+	}
+}
+table{
+	width:100%;
+	margin:0em;
+	@media screen and (min-width:600px){
+		width:66%;	
+	}
+	
+	td{
+		border-bottom:1px solid $light-gray;
+		padding-right:0.25em;
+	}
+}
+
+
+ol li{
+	margin-bottom:1em;
+}
+
+.week-number{
+	display:inline-block;
+	float:left;
+	margin-right:3em;
+}
+
+
+
+.week{
+	border-top:1px solid $link-color;
+	p{
+		margin-left:6.5em;
+	}
+}
+
+.week
+.readings p{
+	margin-left:8.5em;
+	text-indent:-2em;
+}
+
+.additional-bibliography{
+	border-top:1px solid $link-color;
+	p{
+		margin-left:2em;
+		text-indent:-2em;
+	}
+}
+
+// CV -------------------------------------
+.download{
+	letter-spacing:1px;
+}
+// PORTRAIT -------------------------------
+.portrait{
+	display:block;
+	@include filter(grayscale(100%));
+	@media screen and (max-width:599px){
+		width:100%;
+	}
+}
+
+.portrait.homepage{
+	width:100%;
+}
+
+.hero{
+	width:100%;
+	height:76vh;
+	background-size:cover;
+	// background-position:0vw -2vw;
+	@media screen and (max-width:710px){
+		background-position:-10vw 0vw;
+	}
+	@media screen and (max-width:599px){
+		background-position: -30vw 0;
+	}
+}
+
+

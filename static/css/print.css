@@ -1,0 +1,12 @@
+@media print {
+  nav, input {
+    display: none; }
+
+  body {
+    font-size: 11pt; }
+
+  button,
+  .download {
+    display: none; } }
+
+/*# sourceMappingURL=print.css.map */
