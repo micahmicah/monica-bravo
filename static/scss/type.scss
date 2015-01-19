@@ -7,7 +7,7 @@ p,
 li, 
 address,
 td{
-	font-family:Georgia;
+	font-family:"Tiempos Text", Georgia;
 	line-height:1.6em;
 }
 
@@ -21,7 +21,7 @@ address{
 
 h1{
 	margin-bottom:0em;
-	font-family:Georgia;
+	font-family:"Tiempos Text", Georgia;
 	font-weight:normal;
 	font-size:20px;
 	margin-right:1em;
@@ -35,7 +35,7 @@ h1{
 }
 
 h2{
-	font-family:Georgia;
+	font-family:"Tiempos Text", Georgia;
 	font-weight:normal;
 }
 
@@ -64,6 +64,12 @@ h4 + p{
 .publication p{
 	margin-left:2em;
 	text-indent:-2em;
+	font-feature-settings: 'onum';
+/* vendor-prefixes */
+-moz-font-feature-settings: 'onum=1';
+-ms-font-feature-settings: 'onum';
+-webkit-font-feature-settings: 'onum';
+-o-font-feature-settings: 'onum';
 }
 
 .course-information{
@@ -77,3 +83,5 @@ div.accolades{
 		text-indent:0em;
 	}
 }
+
+

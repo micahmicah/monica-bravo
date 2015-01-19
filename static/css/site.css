@@ -5,7 +5,7 @@ p,
 li,
 address,
 td {
-  font-family: Georgia;
+  font-family: "Tiempos Text", Georgia;
   line-height: 1.6em; }
 
 p {
@@ -16,7 +16,7 @@ address {
 
 h1 {
   margin-bottom: 0em;
-  font-family: Georgia;
+  font-family: "Tiempos Text", Georgia;
   font-weight: normal;
   font-size: 20px;
   margin-right: 1em;
@@ -29,7 +29,7 @@ h1 {
       display: inline-block; } }
 
 h2 {
-  font-family: Georgia;
+  font-family: "Tiempos Text", Georgia;
   font-weight: normal; }
 
 h3 {
@@ -50,7 +50,13 @@ h4 + p {
 .exhibition p,
 .publication p {
   margin-left: 2em;
-  text-indent: -2em; }
+  text-indent: -2em;
+  font-feature-settings: 'onum';
+  /* vendor-prefixes */
+  -moz-font-feature-settings: 'onum=1';
+  -ms-font-feature-settings: 'onum';
+  -webkit-font-feature-settings: 'onum';
+  -o-font-feature-settings: 'onum'; }
 
 .course-information {
   margin-left: 2em; }
@@ -95,11 +101,14 @@ body.loaded {
 /* close commented backslash hack */
 a:link,
 a:visited {
-  color: #05d2c1;
-  text-decoration: none; }
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid #05d2c1; }
 
-.logo a {
-  color: black; }
+.logo a:link,
+.logo a:visited {
+  color: black;
+  border-bottom: none; }
 
 button {
   background: none;
@@ -133,11 +142,13 @@ nav {
     font-weight: bold;
     font-size: 0.8em;
     border-bottom: 1px solid #f0f0f0; }
-    nav li a {
+    nav li a:link,
+    nav li a:visited {
       display: block;
       padding: 0.5em 0.25em;
       border-top: 1px solid white;
-      border-bottom: 1px solid white; }
+      border-bottom: 1px solid white;
+      color: #05d2c1; }
     nav li a:hover {
       color: black;
       border-top: 1px solid #e6e6e6;
