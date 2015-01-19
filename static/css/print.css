@@ -3,41 +3,10 @@
     display: none; }
 
   body {
-    font-size: 10pt; }
-
-  p, li {
-    line-height: 1.5em; }
+    font-size: 11pt; }
 
   button,
   .download {
-    display: none; }
-
-  a:link,
-  a:visited {
-    border: none; }
-
-  footer {
-    display: block;
-    position: absolute;
-    top: 1.5em;
-    left: 18em; }
-    footer .name {
-      display: none; }
-    footer p {
-      font-family: "Atlas Grotesk";
-      font-size: 7.5pt;
-      margin-bottom: 0em;
-      margin-top: 0em; }
-    footer .cell:before {
-      content: "cell: "; }
-    footer .office-phone:before {
-      content: "office: "; }
-    footer .university-email:before {
-      content: "academic: "; }
-    footer .institution {
-      position: absolute;
-      right: 0em;
-      left: 12em;
-      top: 1.5em; } }
+    display: none; } }
 
 /*# sourceMappingURL=print.css.map */

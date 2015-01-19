@@ -61,19 +61,6 @@ div.accolades {
   div.accolades :first-child {
     text-indent: 0em; }
 
-h3, h4, .date, .main-nav li {
-  font-family: "Atlas Grotesk";
-  font-weight: 500; }
-
-p, li, address, h1, h2 {
-  font-family: "Tiempos Text";
-  font-feature-settings: 'onum';
-  /* vendor-prefixes */
-  -moz-font-feature-settings: 'onum=1';
-  -ms-font-feature-settings: 'onum';
-  -webkit-font-feature-settings: 'onum';
-  -o-font-feature-settings: 'onum'; }
-
 body {
   margin: 0em auto 0em auto;
   max-width: 1000px;
@@ -108,19 +95,11 @@ body.loaded {
 /* close commented backslash hack */
 a:link,
 a:visited {
-  color: black;
-  text-decoration: none;
-  border-bottom: 1px solid #05d2c1; }
+  color: #05d2c1;
+  text-decoration: none; }
 
-a:hover {
-  color: #05d2c1; }
-
-.logo a:link,
-.logo a:visited {
-  color: black;
-  border: none; }
-.logo a:hover {
-  color: #05d2c1; }
+.logo a {
+  color: black; }
 
 button {
   background: none;
@@ -154,22 +133,15 @@ nav {
     font-weight: bold;
     font-size: 0.8em;
     border-bottom: 1px solid #f0f0f0; }
-    nav li a:link,
-    nav li a:visited {
+    nav li a {
       display: block;
       padding: 0.5em 0.25em;
       border-top: 1px solid white;
-      border-bottom: 1px solid white;
-      color: #05d2c1; }
+      border-bottom: 1px solid white; }
     nav li a:hover {
       color: black;
       border-top: 1px solid #e6e6e6;
       border-bottom: 1px solid #e6e6e6; }
-  nav li:last-child {
-    border-bottom: 2px solid #05d2c1; }
-    @media screen and (min-width: 600px) {
-      nav li:last-child {
-        border-bottom: none; } }
   @media screen and (min-width: 600px) {
     nav li {
       display: inline-block;
@@ -209,6 +181,7 @@ form {
       float: left;
       border-top: none; } }
   .news .date {
+    font-family: Arial;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.7em;
@@ -310,52 +283,15 @@ ol li {
     .hero {
       background-position: -30vw 0; } }
 
-footer {
-  display: none; }
-
-::selection {
-  background: #c6fffa; }
-
 @media print {
   nav, input {
     display: none; }
 
   body {
-    font-size: 10pt; }
-
-  p, li {
-    line-height: 1.5em; }
+    font-size: 11pt; }
 
   button,
   .download {
-    display: none; }
-
-  a:link,
-  a:visited {
-    border: none; }
-
-  footer {
-    display: block;
-    position: absolute;
-    top: 1.5em;
-    left: 18em; }
-    footer .name {
-      display: none; }
-    footer p {
-      font-family: "Atlas Grotesk";
-      font-size: 7.5pt;
-      margin-bottom: 0em;
-      margin-top: 0em; }
-    footer .cell:before {
-      content: "cell: "; }
-    footer .office-phone:before {
-      content: "office: "; }
-    footer .university-email:before {
-      content: "academic: "; }
-    footer .institution {
-      position: absolute;
-      right: 0em;
-      left: 12em;
-      top: 1.5em; } }
+    display: none; } }
 
 /*# sourceMappingURL=site.css.map */

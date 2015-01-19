@@ -28,7 +28,9 @@
     {{ row.description|safe }}      
   {% endfor %}
   
-  <!-- insert teaching experiencem partial -->
+   {% block experience %}
+    {% include "templates/partials/teaching-experience.html" %}
+  {% endblock %}
 
   
   <h3 id="effectiveness">Evidence of Effectiveness</h3>            
