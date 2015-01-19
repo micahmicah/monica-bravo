@@ -77,3 +77,20 @@ div.accolades{
 		text-indent:0em;
 	}
 }
+
+
+
+h3,h4, .date, .main-nav li{
+	font-family:"Atlas Grotesk";
+	font-weight:500;
+}
+
+p, li, address, h1, h2{
+	font-family:"Tiempos Text";
+	font-feature-settings: 'onum';
+/* vendor-prefixes */
+-moz-font-feature-settings: 'onum=1';
+-ms-font-feature-settings: 'onum';
+-webkit-font-feature-settings: 'onum';
+-o-font-feature-settings: 'onum';
+}

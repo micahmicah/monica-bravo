@@ -13,32 +13,107 @@
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
   <p><a href="{{ url('syllabi') }}">View a list of all syllabi</a></p>
-  <h2>{{ item.name }}</h2>
-  {{ item.course_description|safe }}
-  
-  {% for row in item.schedule  %}
-  <div class="week claerfix">
-      <h3 class="week-number">Week {{row.week}}</h3>
-      <h3>{{row.subject}}</h3>
-      <p>{{row.day_one}}</p>
-      <div class="readings">
-         {{ row.day_one_readings|safe }}
-       </div>
-       <p><strong>{{ row.day_one_assignment }}</strong></p>
-       <p>{{row.day_two}}</p>
-       <div class="readings">
-         {{ row.day_two_readings|safe }}
-       </div>
-       <p><strong>{{ row.day_two_assignment }}</strong></p>
-  </div>  
-  {% endfor %}
-
- 
-  <div class="additional-bibliography">
-   <h3>Additoinal Bibliography</h3>
-    {{item.additional_bibliography|safe}}
-  </div>
-
-  
-  
+  <h1>{{ item.name }}</h1>
+  <ul>
+      <li>
+        <strong>Name: </strong>
+        {{ item.name }}
+      </li>
+      <li>
+        <strong>Create Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.create_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Last Updated: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.last_updated|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Publish Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.publish_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>PDF: </strong>
+        {# Download link. #}
+        <a href="{{ item.pdf.url }}">Click to download</a>
+      </li>
+      <li>
+        <strong>Course Number: </strong>
+        {{ item.course_number }}
+      </li>
+      <li>
+        <strong>Credit Hours: </strong>
+        {{ item.credit_hours }}
+      </li>
+      <li>
+        <strong>Room Number: </strong>
+        {{ item.room_number }}
+      </li>
+      <li>
+        <strong>Office: </strong>
+        {{ item.office }}
+      </li>
+      <li>
+        <strong>Office Hours: </strong>
+        {{ item.office_hours }}
+      </li>
+      <li>
+        <strong>Course Description: </strong>
+        {{ item.course_description|safe }}
+      </li>
+      <li>
+        <strong>Schedule: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in item.schedule %}
+            <li>
+              <strong>Week: </strong>
+              {{ row.week }}
+            </li>
+            <li>
+              <strong>Subject: </strong>
+              {{ row.subject }}
+            </li>
+            <li>
+              <strong>Day One: </strong>
+              {{ row.day_one }}
+            </li>
+            <li>
+              <strong>Day One Readings: </strong>
+              {{ row.day_one_readings|safe }}
+            </li>
+            <li>
+              <strong>Day One Assignment: </strong>
+              {{ row.day_one_assignment }}
+            </li>
+            <li>
+              <strong>Day Two: </strong>
+              {{ row.day_two }}
+            </li>
+            <li>
+              <strong>Day Two Readings: </strong>
+              {{ row.day_two_readings|safe }}
+            </li>
+            <li>
+              <strong>Day Two Assignment: </strong>
+              {{ row.day_two_assignment }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>Additional Bibliography: </strong>
+        {{ item.additional_bibliography|safe }}
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ item.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ item.slug }}
+      </li>
+  </ul>
 {% endblock %}

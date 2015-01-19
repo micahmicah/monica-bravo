@@ -12,38 +12,92 @@
 {# This sets our page <title>. It will append this teaching's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ cms.teaching.name }}{% endblock %}
 {% block content %}
-  <h2>{{ cms.teaching.name }}</h2>
-  
-  <a class="download" href="{{ cms.teaching.portfolio.url }}">Download Teaching Portfolio</a>
-
-  <h3 id="philosophy">Philosophy</h3>
-  {{ cms.teaching.philosophy|safe }}
-  
-
-  <h3 id="competencies">Competencies</h3>
-  {% for row in cms.teaching.competencies %}
-    <h4>
-      {{ row.title }}
-    </h4>
-    {{ row.description|safe }}      
-  {% endfor %}
-  
-   {% block experience %}
-    {% include "templates/partials/teaching-experience.html" %}
-  {% endblock %}
-
-  
-  <h3 id="effectiveness">Evidence of Effectiveness</h3>            
-  {% for row in cms.teaching.evidence_of_effectiveness %}
-    {{ row.evaluation|safe }}          
-  {% endfor %}
-
-  <h3>Course Syllabi</h3>
-  {% for item in cms.syllabi  %}
-    <a href="{{url(item)}}">{{item.name}}</a>
-    
-  {% endfor %}
-    
-  
-  
+  <h1>{{ cms.teaching.name }}</h1>
+  <ul>
+      <li>
+        <strong>Name: </strong>
+        {{ cms.teaching.name }}
+      </li>
+      <li>
+        <strong>Create Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ cms.teaching.create_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Last Updated: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ cms.teaching.last_updated|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Philosophy: </strong>
+        {{ cms.teaching.philosophy|safe }}
+      </li>
+      <li>
+        <strong>Portfolio: </strong>
+        {# Download link. #}
+        <a href="{{ cms.teaching.portfolio.url }}">Click to download</a>
+      </li>
+      <li>
+        <strong>Competencies: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in cms.teaching.competencies %}
+            <li>
+              <strong>Title: </strong>
+              {{ row.title }}
+            </li>
+            <li>
+              <strong>Description: </strong>
+              {{ row.description|safe }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ cms.teaching.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ cms.teaching.slug }}
+      </li>
+      <li>
+        <strong>Experience: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in cms.teaching.experience %}
+            <li>
+              <strong>Institution: </strong>
+              {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+                {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+                <a href="{{ url(row.institution) }}">{{ row.institution.name }}</a>
+            </li>
+            <li>
+              <strong>Title: </strong>
+              {{ row.title }}
+            </li>
+            <li>
+              <strong>Responsibilities: </strong>
+              {{ row.responsibilities }}
+            </li>
+            <li>
+              <strong>Course Information: </strong>
+              {{ row.course_information|safe }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <strong>Evidence of Effectiveness: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in cms.teaching.evidence_of_effectiveness %}
+            <li>
+              <strong>Evaluation: </strong>
+              {{ row.evaluation|safe }}
+            </li>
+        {% endfor %}
+        </ul>
+      </li>
+  </ul>
 {% endblock %}

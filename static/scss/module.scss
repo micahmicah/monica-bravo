@@ -37,16 +37,26 @@ body.loaded{
 // LINKS ---------------------------------
 a:link,
 a:visited{
-	color:$link-color;
+	color:black;
 	text-decoration:none;
+	border-bottom:1px solid $link-color;
+}
+
+a:hover{
+	color:$link-color;
 }
 
 
 
 // HEADER --------------------------------
 .logo{
-	a{
+	a:link,
+	a:visited{
 		color:black;
+		border:none;
+	}
+	a:hover{
+		color:$link-color;
 	}
 }
 
@@ -78,6 +88,7 @@ button:focus{
 
 nav{
 	display:none;
+
 	@media screen and (min-width:600px){
 		display:inline-block;
 		// display:block;	
@@ -96,11 +107,13 @@ nav{
 			font-weight:bold;
 			font-size:0.8em;
 			border-bottom:1px solid rgb(240,240,240);
-			a{
+			a:link,
+			a:visited{
 				display:block;
 				padding:0.5em 0.25em;
 				border-top:1px solid white;
 				border-bottom:1px solid white;
+				color:$link-color;
 			}
 			a:hover{
 				// background:$light-gray;
@@ -109,6 +122,12 @@ nav{
 				border-bottom:1px solid $light-gray;
 			}
 		}
+	li:last-child{
+		border-bottom:2px solid $link-color;
+		@media screen and (min-width:600px){
+			border-bottom: none;
+		}
+	}
 	@media screen and (min-width:600px){
 		li{
 			display:inline-block;
@@ -160,7 +179,7 @@ form{
 		border-top:none;
 	}
 	.date{
-		font-family:Arial;
+		// font-family:Arial;
 		text-transform:uppercase;
 		letter-spacing:1px;
 		font-size:0.7em;
@@ -292,4 +311,12 @@ ol li{
 	}
 }
 
+// FOOTER ---------------------------------
+footer{
+	display:none;
+}
 
+
+::selection{
+	background:#c6fffa;
+}

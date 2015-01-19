@@ -4,11 +4,51 @@
 	}
 
 	body{
-		font-size:11pt;
+		font-size:10pt;
+		// padding-top:5em;
 	}
-
+	
+	p,li{
+		line-height:1.5em;
+	}
 	button,
 	.download{
 		display:none;
+	}
+	a:link,
+	a:visited{
+		border:none;
+	}
+
+	footer{
+
+		display:block;
+		position:absolute;
+		top:1.5em;
+		left:18em;
+		.name{
+			display:none;
+		}
+		p{
+			font-family:"Atlas Grotesk";
+			font-size:7.5pt;
+			margin-bottom:0em;
+			margin-top:0em;
+		}
+		.cell:before{
+			content:"cell: ";
+		}
+		.office-phone:before{
+			content:"office: ";
+		}
+		.university-email:before{
+			content:"academic: ";
+		}
+		.institution{
+			position:absolute;
+			right:0em;
+			left:12em;
+			top:1.5em;
+		}
 	}
 }
