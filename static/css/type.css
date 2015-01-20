@@ -37,10 +37,13 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9em;
-  line-height: 1.7em; }
+  line-height: 1.7em;
+  font-family: "Atlas Grotesk", Arial, sans-serif; }
 
 h4 {
-  margin-bottom: 0em; }
+  margin-bottom: 0em;
+  font-family: "Atlas Grotesk", Arial, sans-serif;
+  letter-spacing: 0.25px; }
 
 h4 + p {
   margin-top: 0.25em; }

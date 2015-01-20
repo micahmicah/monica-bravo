@@ -224,12 +224,6 @@ module.exports.init = function (swig) {
     return marked(input);
   }
 
-  var markish = function(input){
-    var markedOutput = marked(input);
-    var markedOutputSliced = markedOutput.slice(3, markedOutput.length - 5);
-    return markedOutputSliced;
-  }
-
   var startsWith = function(input, string) {
     if(typeof(input) !== "string") {
       return false;
@@ -464,7 +458,6 @@ module.exports.init = function (swig) {
   swig.setFilter('size', size);
   swig.setFilter('groupBy', groupBy);
   swig.setFilter('markdown', markdown);
-  swig.setFilter('markish', markish);
   swig.setFilter('date', date);
   swig.setFilter('where', where);
   swig.setFilter('exclude', exclude);

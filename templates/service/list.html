@@ -29,10 +29,9 @@
   {# This is how you set pagination. It's always important to do this after your sort. #}
   {% set data = paginate(data, 5) %}
 
-  <h2>University Service</h2>
+  <h2>Service</h2>
 
-  <h3>University Service</h3>
-  {% for item in cms.universityservice  %}
+  {% for item in cms.service  %}
     <div class="cv">
       <p>{{item.name}},
       {{item.department|safe}},

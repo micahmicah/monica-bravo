@@ -29,14 +29,14 @@
   <h3>Publications</h3>
   {% for row in cms.research.publications  %}
   <div class="publication">
-    <p>{{row.title|markish|safe}} {{row.journal|markish|safe}} {{row.timeframe}}</p>
+    <p>{{row.title|safe}} {{row.journal|safe}} {{row.timeframe}}</p>
   </div>
   {% endfor %}
 
   <h3>Exhibitions Curated</h3>
   {% for row in cms.research.exhibitions_curated  %}
   <div class="exhibition">
-    <p>{{row.title|markish|safe}} {{row.location.street1}}, {{row.location.city}}, {{row.location.state}}, {{row.role}}, {{row.timeframe}} </p>
+    <p>{{row.title|safe}} {{row.location.street1}}, {{row.location.city}}, {{row.location.state}}, {{row.role}}, {{row.timeframe}} </p>
   </div>
   {% endfor %}
         

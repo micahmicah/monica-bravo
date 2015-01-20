@@ -72,10 +72,10 @@
 
 
   <h3>University Service</h3>
-  {% for item in cms.universityservice  %}
+  {% for item in cms.service  %}
     <div class="cv">
       <p>{{item.name}},
-      {{item.department|markish|safe}},
+      {{item.department|safe}},
       {% for relation in item.institution  %}
         {{relation.name}},
       {% endfor %}

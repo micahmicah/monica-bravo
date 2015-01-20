@@ -1,23 +1,23 @@
 /*
 Error: Undefined mixin 'transition'.
-        on line 14 of scss/module.scss, in `transition'
-        from line 14 of scss/module.scss
+        on line 18 of scss/module.scss, in `transition'
+        from line 18 of scss/module.scss
 
-9: 	max-width:1000px;
-10: 	padding:0em 2em 10em 2em;
-11: 	// border-top:2px solid $link-color;
-12: 	border-bottom:2px solid $link-color;
-13: 	opacity:0.0;
-14: 	@include transition(opacity 0.12s ease-in);
-15: }
-16: 
-17: body.loaded{
-18: 	opacity:1.0;
-19: 
+13: 	max-width:1000px;
+14: 	padding:0em 2em 10em 2em;
+15: 	// border-top:2px solid $link-color;
+16: 	border-bottom:2px solid $link-color;
+17: 	opacity:0.0;
+18: 	@include transition(opacity 0.12s ease-in);
+19: }
+20: 
+21: body.loaded{
+22: 	opacity:1.0;
+23: 
 
 Backtrace:
-scss/module.scss:14:in `transition'
-scss/module.scss:14
+scss/module.scss:18:in `transition'
+scss/module.scss:18
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:338:in `block in visit_mixin'
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/stack.rb:98:in `block in with_mixin'
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
@@ -71,4 +71,4 @@ scss/module.scss:14
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'transition'.\A         on line 14 of scss/module.scss, in `transition'\A         from line 14 of scss/module.scss\A \A 9: 	max-width:1000px;\A 10: 	padding:0em 2em 10em 2em;\A 11: 	// border-top:2px solid $link-color;\A 12: 	border-bottom:2px solid $link-color;\A 13: 	opacity:0.0;\A 14: 	@include transition(opacity 0.12s ease-in);\A 15: }\A 16: \A 17: body.loaded{\A 18: 	opacity:1.0;\A 19: "; }
+  content: "Error: Undefined mixin 'transition'.\A         on line 18 of scss/module.scss, in `transition'\A         from line 18 of scss/module.scss\A \A 13: 	max-width:1000px;\A 14: 	padding:0em 2em 10em 2em;\A 15: 	// border-top:2px solid $link-color;\A 16: 	border-bottom:2px solid $link-color;\A 17: 	opacity:0.0;\A 18: 	@include transition(opacity 0.12s ease-in);\A 19: }\A 20: \A 21: body.loaded{\A 22: 	opacity:1.0;\A 23: "; }
