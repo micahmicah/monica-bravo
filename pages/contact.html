@@ -15,7 +15,8 @@
  
   <h2>Contact</h2>
 
-  <img class="portrait" src="{{ cms.bio.portrait|imageSize(400) }}" />
+ 
+  <img class="portrait" src="{{cms.bio.portraits[1].url|imageSize(400)}}" />
   <p>
     <a href="tel:{{cms.bio.cell}}">{{cms.bio.cell}}</a><br/>
     <a href="mailto:{{cms.bio.university_email}}">{{cms.bio.university_email}}</a><br/>

@@ -25,19 +25,32 @@
          {{ row.day_one_readings|safe }}
        </div>
        <p><strong>{{ row.day_one_assignment }}</strong></p>
+       
        <p>{{row.day_two}}</p>
        <div class="readings">
          {{ row.day_two_readings|safe }}
        </div>
        <p><strong>{{ row.day_two_assignment }}</strong></p>
+
+       <p>{{row.day_three}}</p>
+       <div class="readings">
+         {{ row.day_three_readings|safe }}
+       </div>
+       <p><strong>{{ row.day_three_assignment }}</strong></p>
+
+
+
   </div>  
   {% endfor %}
 
- 
+ {% if item.additional_bibliography %}
   <div class="additional-bibliography">
    <h3>Additoinal Bibliography</h3>
     {{item.additional_bibliography|safe}}
   </div>
+ {% endif %}
+
+  
 
   
   

@@ -40,35 +40,54 @@
   {% endfor %}
   
   <h3>Dissertation</h3>
-  <p>Title:{{cms.research.dissertation_title}}</p>
-  <p>Chair:{{cms.research.dissertation_chair.first}} {{cms.research.dissertation_chair.last}}, {{cms.research.chair_title}}, 
-  {% for relation in cms.research.chair_institution %}
-    {{relation.name}}
+  <div class="cv">
+    <p>Title:{{cms.research.dissertation_title}}</p>
+    <p>Chair:{{cms.research.dissertation_chair.first}} {{cms.research.dissertation_chair.last}}, {{cms.research.chair_title}}, 
+    {% for relation in cms.research.chair_institution %}
+      {{relation.name}}
+    {% endfor %}
+    </p>
+
+    <p>Readers:
+    {% for row in cms.research.dissertation_readers %}
+      {{row.person.first}} {{row.person.last}} {{row.title}}
+    {% endfor %}
+    </p>
+
+    <p>
+      {{cms.research.dissertation_abstract|safe}}
+    </p>
+  </div>
+  
+  <h3>Research and Teaching Interests</h3>
+  {{cms.research.research_and_teaching_interests|safe}}
+
+  <h3>Grants and Fellowships</h3>
+  {% for row in cms.research.grants_and_fellowships  %}
+  <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}}, {{row.institution.address.state}}, {{row.timeframe}}</p>
+        
   {% endfor %}
-  </p>
-
-  <p>Readers:
-  {% for row in cms.research.dissertation_readers %}
-    {{row.person.first}} {{row.person.last}} {{row.title}}
-  {% endfor %}
-
-  </p>
-
+  
   <h3>Travel Awards</h3>
-  {% for item in cms.travelawards  %}
-    <div class="cv">
-      <p>{{item.name}}, 
-        {% for relation in cms.travelawards.institution  %}
-            {{relation.name}}
-        {% endfor %}
-        {{item.timeframe}}
-      </p>
-    </div>
-  {% endfor %}
+ 
+  <div class="cv">
+    {% for row in cms.research.bananas  %}
+          <p>{{row.name}} {{row.chimp.name}}</p>
+    {% endfor %}
+  </div>
+
 
   {% block experience %}
     {% include "templates/partials/teaching-experience.html" %}
   {% endblock %}
+
+    <h3>Pedagogical and Technical Training</h3>
+
+   {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
+    <div class="degree">
+      <p>{{row.title}}, {{row.department}}, {{ row.institution.name }}, {{row.timeframe}}. {{row.overview}}</p>
+    </div>
+   {% endfor %}
 
 
   <h3>University Service</h3>

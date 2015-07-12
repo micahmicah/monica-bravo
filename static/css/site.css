@@ -309,6 +309,9 @@ ol li {
   @media screen and (min-width: 767px) {
     .hero {
       background-position: 0vw 0; } }
+  @media screen and (min-width: 767px) and (max-height: 745px) {
+    .hero {
+      background-position: 0vw -10vh; } }
 
 @media print {
   nav, input {

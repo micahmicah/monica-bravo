@@ -29,10 +29,18 @@
         {{ cms.bio.last_updated|date('F d Y') }}
       </li>
       <li>
-        <strong>Portrait: </strong>
-        {# You can pull out a lot more information from the image property. Info here: #}
+        <strong>Portraits: </strong>
+        {# You can pull out a lot more information from the gallery property. Info here: #}
         {# http://www.webhook.com/docs/widget-template-reference/#image #}
-        <img src="{{ cms.bio.portrait|imageSize(200) }}" />
+        <ul>
+          {% for image in cms.bio.portraits %}
+            <li>
+              {# You can get the raw image url by accessing image.url #}
+              <img src="{{ image|imageSize(200,200) }}">
+              <div>{{ image.caption }}</div>
+            </li>
+          {% endfor%}
+        </ul>
       </li>
       <li>
         <strong>CV: </strong>

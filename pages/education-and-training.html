@@ -35,5 +35,11 @@
         
   <h3>Pedagogical and Technical Training</h3>
 
+   {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
+    <div class="degree">
+      <p>{{row.title}}, {{row.department}}, {{ row.institution.name }}, {{row.timeframe}}. {{row.overview}}</p>
+    </div>
+   {% endfor %}
+
   
 {% endblock %}

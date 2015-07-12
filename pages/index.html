@@ -20,9 +20,11 @@
 {% block content %}
   
 
-  <div class="hero" style="background-image:url('{{ cms.bio.portrait|imageSize(800) }}');">
+  <div class="hero" style="background-image:url('{{cms.bio.portraits[0].url|imageSize(800)}}');">
     
   </div>
+
+  
   
   <div class="clearfix">
     <div class="intro">

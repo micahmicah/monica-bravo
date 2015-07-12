@@ -11,7 +11,7 @@ var tinylr = require('tiny-lr');
 var _ = require('lodash');
 var wrench = require('wrench');
 var utils = require('./utils.js');
-var ws = require('ws').Server;
+var websocketServer = require('nodejs-websocket');
 var Zip   = require('adm-zip');
 var slug = require('uslug');
 var async = require('async');
@@ -54,6 +54,11 @@ var wrap = function()
          'var window = null;' +
          'var process = null;' +
          'var eval = null;' +
+         'var require = null;' +
+         'var __filename = null;' +
+         'var __dirname = null;' +
+         'var modules = null;' +
+         'var exports = null;' +
          last;
 
   args.push(last);
@@ -66,6 +71,8 @@ Function = wrap;
 // Disable console log in various things
 //console.log = function () {};
 
+var cmsSocketPort = 6557;
+
 /**
  * Generator that handles various commands
  * @param  {Object}   config     Configuration options from .firebase.conf
@@ -75,6 +82,11 @@ module.exports.generator = function (config, options, logger, fileParser) {
   var self = this;
   var firebaseUrl = config.get('webhook').firebase || 'webhook';
   var liveReloadPort = config.get('connect')['wh-server'].options.livereload;
+
+  if(liveReloadPort !== 35730) {
+    cmsSocketPort = liveReloadPort + 1; 
+  }
+
   var websocket = null;
   var strictMode = false;
   var productionFlag = false;
@@ -131,6 +143,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
       swigFunctions.setSettings(self.cachedData.settings);
       swigFilters.setSiteDns(self.cachedData.siteDns);
       swigFilters.setFirebaseConf(config.get('webhook'));
+      swigFilters.setTypeInfo(self.cachedData.typeInfo);
 
       callback(self.cachedData.data, self.cachedData.typeInfo);
       return;
@@ -176,6 +189,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
       swigFunctions.setData(data);
       swigFunctions.setTypeInfo(typeInfo);
       swigFunctions.setSettings(settings);
+      swigFilters.setTypeInfo(typeInfo);
 
       getDnsChild().once('value', function(snap) {
         var siteDns = snap.val() || config.get('webhook').siteName + '.webhook.org';
@@ -304,6 +318,8 @@ module.exports.generator = function (config, options, logger, fileParser) {
     // Merge functions in
     params = utils.extend(params, swigFunctions.getFunctions());
 
+    params.cmsSocketPort = cmsSocketPort;
+
     swigFunctions.init();
 
     var outputUrl = outFile.replace('index.html', '').replace('./.build', '');
@@ -409,11 +425,32 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
       var entries = zip.getEntries();
 
+      if(fs.existsSync('package.json')) {
+        fs.renameSync('package.json', 'old.package.json');
+      }
+
       entries.forEach(function(entry) {
         var newName = entry.entryName.split('/').slice(1).join('/');
         entry.entryName = newName;
       });
       zip.extractAllTo('.', true);
+
+      if(fs.existsSync('old.package.json') && fs.existsSync('package.json')) {
+        var packageJson = JSON.parse(fs.readFileSync('package.json'));
+        var oldPackageJson = JSON.parse(fs.readFileSync('old.package.json'));
+
+        var depends = packageJson.dependencies;
+        var oldDepends = oldPackageJson.dependencies;
+
+        _.assign(depends, oldDepends);
+
+        packageJson.dependencies = depends;
+
+        fs.writeFileSync('package.json', JSON.stringify(packageJson, null, "  "));
+        fs.unlinkSync('old.package.json');
+      } else if(fs.existsSync('old.package.json')) {
+        fs.renameSync('old.package.json', 'package.json');
+      }
 
       fs.unlinkSync('.preset.zip');
       callback();
@@ -519,11 +556,32 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
     var entries = zip.getEntries();
 
+    if(fs.existsSync('package.json')) {
+      fs.renameSync('package.json', 'old.package.json');
+    }
+
     entries.forEach(function(entry) {
       var newName = entry.entryName.split('/').slice(1).join('/');
       entry.entryName = newName;
     });
     zip.extractAllTo('.', true);
+
+    if(fs.existsSync('old.package.json') && fs.existsSync('package.json')) {
+      var packageJson = JSON.parse(fs.readFileSync('package.json'));
+      var oldPackageJson = JSON.parse(fs.readFileSync('old.package.json'));
+
+      var depends = packageJson.dependencies;
+      var oldDepends = oldPackageJson.dependencies;
+
+      _.assign(depends, oldDepends);
+
+      packageJson.dependencies = depends;
+
+      fs.writeFileSync('package.json', JSON.stringify(packageJson, null, "  "));
+      fs.unlinkSync('old.package.json');
+    } else if(fs.existsSync('old.package.json')) {
+      fs.renameSync('old.package.json', 'package.json');
+    }
 
     fs.unlinkSync('.preset.zip');
 
@@ -584,10 +642,13 @@ module.exports.generator = function (config, options, logger, fileParser) {
           var filename = path.basename(newFile, path.extname(file));
           var extension = path.extname(file);
 
-
-          if(path.extname(file) === '.html' && filename !== 'index' && path.basename(newFile) !== '404.html') {
+          if(path.extname(file) === '.html' && filename !== 'index' && path.basename(newFile) !== '404.html' && file.indexOf('.raw.html') === -1) {
             dir = dir + '/' + filename;
             filename = 'index';
+          }
+
+          if(filename.indexOf('.raw') !== -1 && filename.indexOf('.raw') === (filename.length - 4) && extension === '.html') {
+            filename = filename.slice(0, filename.length - 4);
           }
 
           newFile = dir + '/' + filename + path.extname(file);
@@ -881,6 +942,35 @@ module.exports.generator = function (config, options, logger, fileParser) {
     }
   }
 
+  self.staticHashs = false;
+  self.changedStaticFiles = [];
+
+  /**
+  * This creates a hash table of all the static files, used to send detailed information to livereload
+  * We only do this for static files for speed, for regular files a full reload usually is ok.
+  */
+  var createStaticHashs = function() {
+    self.staticHashs = {};
+    self.changedStaticFiles = [];
+
+    if(fs.existsSync('.build/static')) {
+      var files = wrench.readdirSyncRecursive('.build/static');
+
+      files.forEach(function(file) {
+        var file = '.build/static/' + file;
+
+        if(!fs.lstatSync(file).isDirectory()) {
+          var hash = md5(fs.readFileSync(file));
+
+          self.staticHashs[file] = hash;
+        }
+      })
+    } else {
+      self.staticHashs = false;
+      self.changedStaticFiles = [];
+    }
+  };
+
   /**
    * Cleans the build directory
    * @param  {Function}   done     Callback passed either a true value to indicate its done, or an error
@@ -895,12 +985,43 @@ module.exports.generator = function (config, options, logger, fileParser) {
       });
   };
 
+  var buildQueue = async.queue(function (task, callback) {
+    if(task.type === 'static') {
+
+      // For static builds we create a hash table to send correct livereload info
+      // We only do this for static files for speed, normal builds dont really matter
+      createStaticHashs();
+
+      removeDirectory('.build/static', function() {
+        self.copyStatic(function() {
+          self.reloadFiles(callback);
+        });
+      });
+    } else {
+      self.realBuildBoth(function() {
+        callback();
+      }, self.reloadFiles);
+    }
+  }, 1);
+
+  this.buildBoth = function(done) {
+    buildQueue.push({ type: 'all' }, function(err) {
+      done();
+    });
+  };
+
+  this.buildStatic = function(done) {
+    buildQueue.push({ type: 'static' }, function(err) {
+      done();
+    });
+  };
+
   /**
    * Builds templates from both /pages and /templates to the build directory
    * @param  {Function}   done     Callback passed either a true value to indicate its done, or an error
    * @param  {Function}   cb       Callback called after finished, passed list of files changed and done function
    */
-  this.buildBoth = function(done, cb) {
+  this.realBuildBoth = function(done, cb) {
     // clean files
     self.cachedData = null;
     self.cleanFiles(null, function() {
@@ -1070,7 +1191,48 @@ module.exports.generator = function (config, options, logger, fileParser) {
    * @param  {Function}   done      Callback passed either a true value to indicate its done, or an error
    */
   this.reloadFiles = function(done) {
-    request({ url : 'http://localhost:' + liveReloadPort + '/changed?files=true', timeout: 10  }, function(error, response, body) {
+    var fileList = 'true';
+
+    if(self.staticHashs !== false && fs.existsSync('.build/static')) {
+      var newFiles = wrench.readdirSyncRecursive('.build/static');
+
+      newFiles.forEach(function(file) {
+        var file = '.build/static/' + file;
+
+
+        if(!fs.lstatSync(file).isDirectory()) {
+          var hash = md5(fs.readFileSync(file));
+
+          if(hash !== self.staticHashs[file]) {
+            self.changedStaticFiles.push(file.replace('.build', ''));
+          }
+
+          if(file in self.staticHashs) {
+            delete self.staticHashs[file];
+          }
+        }
+      })
+
+      // For any left over keys, means they got deleted
+      for(var key in self.staticHashs) {
+        self.changedStaticFiles.push(key.replace('.build', ''));
+      }
+
+      if(self.changedStaticFiles.length === 0) {
+        if(done) done(true);
+        self.staticHashs = false;
+        self.changedStaticFiles = [];
+        return;
+      }
+
+      fileList = self.changedStaticFiles.join(',');
+
+      self.staticHashs = false;
+      self.changedStaticFiles = [];
+    }
+
+
+    request({ url : 'http://localhost:' + liveReloadPort + '/changed?files=' + fileList, timeout: 10  }, function(error, response, body) {
       if(done) done(true);
     });
   };
@@ -1079,7 +1241,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
    * Starts a live reload server, which will refresh the pages when signaled
    */
   this.startLiveReload = function() {
-    tinylr().listen(liveReloadPort);
+    tinylr({ liveCSS: true, liveImg: true }).listen(liveReloadPort);
   };
 
   /**
@@ -1088,7 +1250,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
    */
   this.sendSockMessage = function(message) {
     if(websocket) {
-      websocket.send('message:' + JSON.stringify(message));
+      websocket.sendText('message:' + JSON.stringify(message));
     }
   };
 
@@ -1141,45 +1303,44 @@ module.exports.generator = function (config, options, logger, fileParser) {
    * Accepts messages for generating scaffolding and downloading preset themes.
    */
   this.webListener = function() {
-    var server = new ws({ host: '0.0.0.0', port: 6557 });
+    var server = new websocketServer.createServer(function(sock) {
 
-    server.on('connection', function(sock) {
       websocket = sock;
 
-      var buildQueue = async.queue(function (task, callback) {
-          self.buildBoth(function() {
-            sock.send('done');
-            callback();
-          }, self.reloadFiles);
-      }, 1);
+      sock.on('close', function() {
+        websocket = null;
+      });
 
-      sock.on('message', function(message) {
+      sock.on('error', function() {
+      })
+
+      sock.on('text', function(message) {
         if(message.indexOf('scaffolding:') === 0)
         {
           var name = message.replace('scaffolding:', '');
           self.makeScaffolding(name, function(individualMD5, listMD5, oneOffMD5) {
-            sock.send('done:' + JSON.stringify({ individualMD5: individualMD5, listMD5: listMD5, oneOffMD5: oneOffMD5 }));
+            sock.sendText('done:' + JSON.stringify({ individualMD5: individualMD5, listMD5: listMD5, oneOffMD5: oneOffMD5 }));
           });
         } else if (message.indexOf('scaffolding_force:') === 0) {
           var name = message.replace('scaffolding_force:', '');
           self.makeScaffolding(name, function(individualMD5, listMD5, oneOffMD5) {
-            sock.send('done:' + JSON.stringify({ individualMD5: individualMD5, listMD5: listMD5, oneOffMD5: oneOffMD5 }));
+            sock.sendText('done:' + JSON.stringify({ individualMD5: individualMD5, listMD5: listMD5, oneOffMD5: oneOffMD5 }));
           }, true);
         } else if (message.indexOf('check_scaffolding:') === 0) {
           var name = message.replace('check_scaffolding:', '');
           self.checkScaffoldingMD5(name, function(individualMD5, listMD5, oneOffMD5) {
-            sock.send('done:' + JSON.stringify({ individualMD5: individualMD5, listMD5: listMD5, oneOffMD5: oneOffMD5 }));
+            sock.sendText('done:' + JSON.stringify({ individualMD5: individualMD5, listMD5: listMD5, oneOffMD5: oneOffMD5 }));
           });
         } else if (message === 'reset_files') {
           resetGenerator(function(error) {
             if(error) {
-              sock.send('done:' + JSON.stringify({ err: 'Error while resetting files' }));
+              sock.sendText('done:' + JSON.stringify({ err: 'Error while resetting files' }));
             } else {
-              sock.send('done');
+              sock.sendText('done');
             }
           });
         } else if (message === 'supported_messages') {
-          sock.send('done:' + JSON.stringify([
+          sock.sendText('done:' + JSON.stringify([
             'scaffolding', 'scaffolding_force', 'check_scaffolding', 'reset_files', 'supported_messages',
             'push', 'build', 'preset', 'layouts', 'preset_localv2', 'generate_slug_v2'
           ]));
@@ -1208,40 +1369,41 @@ module.exports.generator = function (config, options, logger, fileParser) {
               tmpSlug = type + '/' + tmpSlug;
             }
               
-            sock.send('done:' + JSON.stringify(tmpSlug));
+            sock.sendText('done:' + JSON.stringify(tmpSlug));
           });
         } else if (message === 'build') {
-          buildQueue.push({}, function(err) {});
+          buildQueue.push({ type: 'all' }, function(err) { 
+            sock.sendText('done');
+          });
         } else if (message.indexOf('preset_local:') === 0) {
           var fileData = message.replace('preset_local:', '');
 
           if(!fileData) {
-            sock.send('done');
+            sock.sendText('done');
             return;
           }
 
           extractPresetLocal(fileData, function(data) {
             runNpm(function() {
-              sock.send('done:' + JSON.stringify(data));
+              sock.sendText('done:' + JSON.stringify(data));
             });
           });
         } else if (message.indexOf('preset:') === 0) {
           var url = message.replace('preset:', '');
           if(!url) {
-            sock.send('done');
+            sock.sendText('done');
             return;
           }
           downloadPreset(url, function(data) {
             runNpm(function() {
-              console.log('DONE RUNNING?')
-              sock.send('done:' + JSON.stringify(data));
+              sock.sendText('done:' + JSON.stringify(data));
             });
           });
         } else {
-          sock.send('done');
+          sock.sendText('done');
         }
       });
-    });
+    }).listen(cmsSocketPort, '0.0.0.0');
   };
 
   /**
@@ -1421,6 +1583,7 @@ module.exports.generator = function (config, options, logger, fileParser) {
 
   this.enableProduction = function() {
     productionFlag = true;
+    swig.setDefaults({ cache: 'memory' });
   }
 
   return this;
