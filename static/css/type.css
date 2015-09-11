@@ -1,12 +1,27 @@
+html {
+  font-size: 16px; }
+
 p, li, address, h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility; }
+
+h1 {
+  margin-bottom: 0em; }
+
+p,
+li,
+address,
+td, h1, h2 {
+  font-family: "Tiempos Text", Georgia; }
+
+h3, h4 {
+  font-family: "Atlas Grotesk", Arial, sans-serif; }
 
 p,
 li,
 address,
 td {
-  font-family: "Tiempos Text", Georgia;
-  line-height: 1.6em; }
+  font-size: 1rem;
+  line-height: 1.6rem; }
 
 p {
   max-width: 700px; }
@@ -15,8 +30,6 @@ address {
   font-style: normal; }
 
 h1 {
-  margin-bottom: 0em;
-  font-family: "Tiempos Text", Georgia;
   font-weight: normal;
   font-size: 20px;
   margin-right: 1em;
@@ -29,45 +42,20 @@ h1 {
       display: inline-block; } }
 
 h2 {
-  font-family: "Tiempos Text", Georgia;
-  font-weight: normal; }
+  font-weight: normal;
+  line-height: 2em; }
 
 h3 {
-  margin-top: 3em;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9em;
-  line-height: 1.7em;
-  font-family: "Atlas Grotesk", Arial, sans-serif; }
+  line-height: 1.7em; }
 
 h4 {
   margin-bottom: 0em;
-  font-family: "Atlas Grotesk", Arial, sans-serif;
   letter-spacing: 0.25px; }
 
 h4 + p {
   margin-top: 0.25em; }
-
-.cv p,
-.degree p,
-.exhibition p,
-.publication p {
-  margin-left: 2em;
-  text-indent: -2em;
-  font-feature-settings: 'onum';
-  /* vendor-prefixes */
-  -moz-font-feature-settings: 'onum=1';
-  -ms-font-feature-settings: 'onum';
-  -webkit-font-feature-settings: 'onum';
-  -o-font-feature-settings: 'onum'; }
-
-.course-information {
-  margin-left: 2em; }
-
-div.accolades {
-  margin-top: -1em;
-  text-indent: 2em; }
-  div.accolades :first-child {
-    text-indent: 0em; }
 
 /*# sourceMappingURL=type.css.map */

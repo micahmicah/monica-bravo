@@ -1,152 +1,158 @@
-{# ------------------------------------------------------- #}
-{# ONE OFF VIEW contact #}
-{# This page can use any data from http:localhost:2000/cms/#/form/contact/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+
 {% extends "templates/partials/base.html" %}
-{# This sets our page <title>. It will append this contact's name to the site title defined in base.html #}
+
 {% block title %}{% parent %} - {{ cms.bio.name }}{% endblock %}
 {% block content %}
   
+
+<section class="cv">
   <h2>CV</h2>
   <a class="download" href="{{ cms.bio.cv.url }}">Download CV</a>
 
   
+  
+    <article class="education cv-entry">
+        <h3>Education</h3>
+        {% for row in cms.educationandtraining.education %}
+            <div class="degree">
+                <p>
+                    {{ row.degree }},   
+                    {{ row.institution.name }},
+                    {{ row.department }},
+                    {{ row.year }}
 
-  <h3>Education</h3>
-  {% for row in cms.educationandtraining.education %}
-  <div class="degree">
-  <p>
-        {{ row.degree }}, 
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          {{ row.institution.name }},
-        {{ row.department }},
-        {{ row.year }}
-      
-      {% if row.additional_notes %}
-        <div class="accolades">
-          {{ row.additional_notes|safe }}
+                    {% if row.additional_notes %}
+                        <div class="accolades">
+                            {{ row.additional_notes|safe }}
+                        </div>
+                    {% endif %}
+                </p>
+            </div>
+        {% endfor %}
+    </article>
+  
+    <article class="dissertation cv-entry">
+        <h3>Dissertation</h3>
+        
+        <p>Title:{{cms.research.dissertation_title}}</p>
+        <p>Chair:{{cms.research.dissertation_chair.first}} {{cms.research.dissertation_chair.last}}, {{cms.research.chair_title}}, 
+        {% for relation in cms.research.chair_institution %}
+          {{relation.name}}
+        {% endfor %}
+        </p>
+
+        <p>Readers:
+        {% for row in cms.research.dissertation_readers %}
+          {{row.person.first}} {{row.person.last}} {{row.title}}
+        {% endfor %}
+        </p>
+
+        <p>
+          Summary: {{cms.research.dissertation_abstract|safe}}
+        </p>
+    </article>
+  
+    <article class="research-teaching cv-entry">
+        <h3>Research and Teaching Interests</h3>
+        {{cms.research.research_and_teaching_interests|safe}}
+    </article>
+
+    <article class="grants-and-fellowships cv-entry">
+        <h3>Grants and Fellowships</h3>
+        {% for row in cms.research.grants_and_fellowships  %}
+            <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}}, {{row.institution.address.state}}, {{row.timeframe}}</p>
+        {% endfor %}
+    </article>
+  
+    <article class="travel-awards cv-entry">
+        <h3>Travel Awards</h3>
+        {% for row in cms.research.travel_awards  %}
+              <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}}, {{row.timeframe}}</p>
+        {% endfor %}
+    </article>
+    
+    <article class="teaching-experience cv-entry">
+        {% block experience %}
+            {% include "templates/partials/teaching-experience.html" %}
+        {% endblock %} 
+    </article>
+  
+
+    <article class="pedagogical-and-technical-training cv-entry">
+        <h3>Pedagogical and Technical Training</h3>
+        {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
+        <div class="degree">
+          <p>{{row.title}}, {{row.department}}, {{ row.institution.name }}, {{row.timeframe}}. {{row.overview}}</p>
         </div>
-      {% endif %}
-      
-    </p>
-    </div>
-  {% endfor %}
-  
-  <h3>Dissertation</h3>
-  <div class="cv">
-    <p>Title:{{cms.research.dissertation_title}}</p>
-    <p>Chair:{{cms.research.dissertation_chair.first}} {{cms.research.dissertation_chair.last}}, {{cms.research.chair_title}}, 
-    {% for relation in cms.research.chair_institution %}
-      {{relation.name}}
-    {% endfor %}
-    </p>
+       {% endfor %}
+    </article>
 
-    <p>Readers:
-    {% for row in cms.research.dissertation_readers %}
-      {{row.person.first}} {{row.person.last}} {{row.title}}
-    {% endfor %}
-    </p>
-
-    <p>
-      {{cms.research.dissertation_abstract|safe}}
-    </p>
-  </div>
-  
-  <h3>Research and Teaching Interests</h3>
-  {{cms.research.research_and_teaching_interests|safe}}
-
-  <h3>Grants and Fellowships</h3>
-  {% for row in cms.research.grants_and_fellowships  %}
-  <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}}, {{row.institution.address.state}}, {{row.timeframe}}</p>
-        
-  {% endfor %}
-  
-  <h3>Travel Awards</h3>
- 
-  <div class="cv">
-    {% for row in cms.research.bananas  %}
-          <p>{{row.name}} {{row.chimp.name}}</p>
-    {% endfor %}
-  </div>
-
-
-  {% block experience %}
-    {% include "templates/partials/teaching-experience.html" %}
-  {% endblock %}
-
-    <h3>Pedagogical and Technical Training</h3>
-
-   {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
-    <div class="degree">
-      <p>{{row.title}}, {{row.department}}, {{ row.institution.name }}, {{row.timeframe}}. {{row.overview}}</p>
-    </div>
-   {% endfor %}
-
-
-  <h3>University Service</h3>
-  {% for item in cms.service  %}
-    <div class="cv">
-      <p>{{item.name}},
-      {{item.department|safe}},
-      {% for relation in item.institution  %}
-        {{relation.name}},
+    <article class="university-service cv-entry">
+        <h3>University Service</h3>
+        {% for item in cms.service  %}
+          <div class="cv">
+            <p>{{item.name}},
+            {{item.department|safe}},
+            {% for relation in item.institution  %}
+              {{relation.name}},
+            {% endfor %}
+            {{item.timeframe}}
+            </p>
+          </div>
+        {% endfor %}
+    </article>
+    
+    <article class="professional-experience cv-entry">
+        <h3>Professional Experience</h3>
+        {% for item in cms.professionalexperience  %}
+        <div class="cv">
+          <p>{{item.position}},
+          {% for relation in item.institution  %}
+            {{relation.name}}, 
+          {% endfor %}
+          {{item.timeframe}}
+          </p>
+        </div>
       {% endfor %}
-      {{item.timeframe}}
-      </p>
-    </div>
-  {% endfor %}
-
-  <h3>Professional Experience</h3>
-  {% for item in cms.professionalexperience  %}
-  <div class="cv">
-      <p>{{item.position}},
-      {% for relation in item.institution  %}
-        {{relation.name}}, 
-      {% endfor %}
-      {{item.timeframe}}
-      </p>
-    </div>
-  {% endfor %}
-
-  <h3>Professional Affiliations</h3>
-  {% for row in cms.bio.professional_affiliations %}
-    <p>{{row.affiliation}}, {{row.timeframe}}</p>
-
-  {% endfor %}
+    </article>
+    
+    <article class="professional-affiliations cv-entry">
+        <h3>Professional Affiliations</h3>
+        {% for row in cms.bio.professional_affiliations %}
+            <p>{{row.affiliation}}, {{row.timeframe}}</p>
+        {% endfor %}
+    </article>
+    
+    <article class="languages cv-entry">
+        <h3>Languages</h3>
+        {% for row in cms.bio.languages  %}
+            <p>{{row.language}}: {{row.ability}}</p>
+        {% endfor %}
+    </article>
   
-  <h3>Languages</h3>
-  {% for row in cms.bio.languages  %}
-    <p>{{row.language}}:
-        {{row.ability}}</p>
-  {% endfor %}
   
-  <h3>References</h3>
+    <article class="references cv-entry">
+        <h3>References</h3>
+        {% for row in cms.bio.references  %}
+            <div class="cv">
+                <p>
+                    {{row.person.first}} {{row.person.last}}, {{row.title}}<br/>
+                    {{row.department}}<br/>
+                    {% for relation in row.institution  %}
+                        {{relation.name}}<br/>
+                    {% endfor %}
+                    {{row.address.street1}}<br/>
+                    {% if row.address.street2 %}
+                        {{row.address.street2}}<br/>
+                    {% endif %}
+                    {{row.address.city}}, {{row.address.state}} {{row.address.zip}}
+                    {{row.phone_number}}<br/>
+                    <a href="mailto:{{row.email}}">{{row.email}}</a><br/>
+                </p>
+            </div>
+        {% endfor %} 
+    </article>
   
-  {% for row in cms.bio.references  %}
-  <div class="cv">
-    <p>
-      {{row.person.first}} {{row.person.last}}, {{row.title}}<br/>
-      {{row.department}}<br/>
-      {% for relation in row.institution  %}
-        {{relation.name}}<br/>
-        
-      {% endfor %}
-      {{row.address.street1}}<br/>
-        {% if row.address.street2 %}
-          {{row.address.street2}}<br/>
-        {% endif %}
-        {{row.address.city}}, {{row.address.state}} {{row.address.zip}}
-      {{row.phone_number}}<br/>
-      <a href="mailto:{{row.email}}">{{row.email}}</a><br/>
-    </p>
-    </div>
-  {% endfor %}
-
+  
+</section>
 {% endblock %}

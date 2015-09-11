@@ -1,18 +1,12 @@
-{# ------------------------------------------------------- #}
-{# ONE OFF VIEW educationandtraining #}
-{# This page can use any data from http:localhost:2000/cms/#/form/educationandtraining/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+
 {% extends "templates/partials/base.html" %}
-{# This sets our page <title>. It will append this educationandtraining's name to the site title defined in base.html #}
+
 {% block title %}{% parent %} - {{ cms.educationandtraining.name }}{% endblock %}
 {% block content %}
+
+<section class="education-and-training">
   <h2>{{ cms.educationandtraining.name }}</h2>
+  <article>
   {% for row in cms.educationandtraining.education %}
   <div class="degree">
   <p>
@@ -32,14 +26,18 @@
     </p>
     </div>
   {% endfor %}
-        
-  <h3>Pedagogical and Technical Training</h3>
+  </article>
+  
+  <article class="pedagogical-and-technical-training">
+    <h3>Pedagogical and Technical Training</h3>
 
    {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
     <div class="degree">
       <p>{{row.title}}, {{row.department}}, {{ row.institution.name }}, {{row.timeframe}}. {{row.overview}}</p>
     </div>
    {% endfor %}
-
+  </article>
+  
+</section>
   
 {% endblock %}

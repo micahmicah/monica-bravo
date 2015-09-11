@@ -36,10 +36,10 @@
           {% for image in cms.bio.portraits %}
             <li>
               {# You can get the raw image url by accessing image.url #}
-              <img src="{{ image|imageSize(200,200) }}">
+              <img src="{{ image|imageSize(200, 200) }}">
               <div>{{ image.caption }}</div>
             </li>
-          {% endfor%}
+          {% endfor %}
         </ul>
       </li>
       <li>
@@ -54,6 +54,24 @@
       <li>
         <strong>Current Affiliaton: </strong>
         {{ cms.bio.current_affiliaton }}
+      </li>
+      <li>
+        <strong>Affiliations: </strong>
+        {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
+        <ul>
+        {% for row in cms.bio.affiliations %}
+            <li>
+              <strong>Title: </strong>
+              {{ row.title }}
+            </li>
+            <li>
+              <strong>Institution: </strong>
+              {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+                {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+                <a href="{{ url(row.institution) }}">{{ row.institution.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
       </li>
       <li>
         <strong>Institution: </strong>

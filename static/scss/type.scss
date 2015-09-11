@@ -1,14 +1,103 @@
+html{
+	font-size:16px;
+}
+
+body{
+	// background:yellow;
+}
+
 p,li,address,h1,h2,h3,h4,h5,h6{
 	text-rendering:optimizeLegibility;
 }
 
 
+
+$leading: 1.6rem;
+$half-leading: 0.8rem;
+$big-leading: $leading * 1.5;
+$giant-leading: $leading * 2;
+
+%space-after-1{
+	margin-bottom:$leading;
+}
+
+%space-before-1{
+	margin-top:$leading;
+}
+
+%padding-top-big{
+	padding-top:$big-leading;
+}
+
+%padding-bottom-big{
+	padding-bottom:$big-leading
+}
+
+%space-after-0{
+	margin-bottom:0em;
+}
+
+%space-before-0{
+	margin-top:0em;
+}
+
+%space-after-half{
+	margin-bottom:$half-leading;
+}
+
+%space-after-big{
+	margin-bottom:$big-leading;
+}
+
+%space-after-giant{
+	margin-bottom:$giant-leading;
+}
+
+%serif-type{
+	font-family:"Tiempos Text", Georgia;
+}
+
+%caption-type{
+	font-family:courier, monospace;
+}
+
+%sans-serif-type{
+	font-family:"Atlas Grotesk", Arial, sans-serif;	
+}
+
+%body-type{
+	@extend %serif-type;
+	font-size:1rem;
+	line-height:$leading;
+}
+
+%small-type{
+	font-size:0.8rem;
+}
+
+%second-line-indent{
+	margin-left:2em;
+	text-indent:-2em;
+}
+
+%no-indent{
+	margin-left:0em;
+	text-indent:0em;
+}
+
+%italics{
+	font-style:italic;
+}
+
+%no-italics{
+	font-style:normal
+}
+
 p,
 li, 
 address,
 td{
-	font-family:"Tiempos Text", Georgia;
-	line-height:1.6em;
+	@extend %body-type;
 }
 
 p{
@@ -20,8 +109,8 @@ address{
 }
 
 h1{
-	margin-bottom:0em;
-	font-family:"Tiempos Text", Georgia;
+	@extend %serif-type;
+	@extend %space-after-0;
 	font-weight:normal;
 	font-size:20px;
 	margin-right:1em;
@@ -35,23 +124,24 @@ h1{
 }
 
 h2{
-	font-family:"Tiempos Text", Georgia;
+	@extend %serif-type;
 	font-weight:normal;
+	line-height:2em;
 }
 
 h3{
-	margin-top:3em;
+	@extend %sans-serif-type;
 	text-transform:uppercase;
 	letter-spacing:1px;
 	font-size:0.9em;
 	line-height:1.7em;
-	font-family:"Atlas Grotesk", Arial, sans-serif;	
+	
 }
 
 
 h4{
+	@extend %sans-serif-type;
 	margin-bottom:0em;
-	font-family:"Atlas Grotesk", Arial, sans-serif;
 	letter-spacing:0.25px;
 }
 
@@ -61,30 +151,27 @@ h4 + p{
 
 
 
-.cv p, 
-.degree p, 
-.exhibition p, 
-.publication p{
-	margin-left:2em;
-	text-indent:-2em;
-	font-feature-settings: 'onum';
-/* vendor-prefixes */
--moz-font-feature-settings: 'onum=1';
--ms-font-feature-settings: 'onum';
--webkit-font-feature-settings: 'onum';
--o-font-feature-settings: 'onum';
+%old-style-figures{
+
+
+		font-feature-settings: 'onum';
+	/* vendor-prefixes */
+	-moz-font-feature-settings: 'onum=1';
+	-ms-font-feature-settings: 'onum';
+	-webkit-font-feature-settings: 'onum';
+	-o-font-feature-settings: 'onum';
 }
 
 .course-information{
-	margin-left:2em;
+	// margin-left:2em;
 }
 
-div.accolades{
-	margin-top:-1em;
-	text-indent:2em;
-	:first-child{
-		text-indent:0em;
-	}
-}
+// div.accolades{
+// 	margin-top:-1em;
+// 	text-indent:2em;
+// 	:first-child{
+// 		text-indent:0em;
+// 	}
+// }
 
 
