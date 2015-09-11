@@ -135,13 +135,19 @@ ol li{
 .week{
 	border-top:1px solid $link-color;
 	p{
-		margin-left:6.5em;
+		@media screen and (min-width:1000px){
+			margin-left:6.5em;	
+		}
+		
 	}
 }
 
 .week
 .readings p{
-	margin-left:8.5em;
+	@media screen and (min-width:1000px){
+		margin-left:8.5em;	
+	}
+	margin-left:2em;
 	text-indent:-2em;
 }
 
@@ -224,7 +230,7 @@ button{
 	font-size:0.8em;
 	// font-weight:bold;
 	letter-spacing:2px;
-	@media screen and (min-width:600px){
+	@media screen and (min-width:1000px){
 		display:none;
 	}
 }
@@ -241,7 +247,7 @@ button:focus{
 
 nav{
 	display:none;
-	@media screen and (min-width:600px){
+	@media screen and (min-width:1000px){
 		display:inline-block;
 		// display:block;	
 	}
@@ -274,7 +280,7 @@ nav{
 				border-bottom:1px solid $light-gray;
 			}
 		}
-	@media screen and (min-width:600px){
+	@media screen and (min-width:1000px){
 		li{
 			display:inline-block;
 			padding:0.5em;
@@ -365,11 +371,19 @@ form{
 }
 
 // SYLLABI --------------------------------
-
+.syllabi-list{
+	padding-left:0;
+	li{
+		list-style:none;
+		@extend %sans-serif-type;
+		margin-bottom:1em;
+	}
+}
 
 // CV -------------------------------------
 .download{
 	letter-spacing:1px;
+	@extend %sans-serif-type;
 }
 // PORTRAIT -------------------------------
 .portrait{

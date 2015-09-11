@@ -7,7 +7,7 @@
 <section class="teaching">
   <h2>{{ cms.teaching.name }}</h2>
   
-  <a class="download" href="{{ cms.teaching.portfolio.url }}">Download Teaching Portfolio</a>
+  <p class="download"><a href="{{ cms.teaching.portfolio.url }}">Download Teaching Portfolio</a></p>
   
   <article class="philosophy">
     <h3 id="philosophy">Philosophy</h3>
@@ -38,11 +38,14 @@
   </article>
 
   <h3>Course Syllabi</h3>
+  <ul class="syllabi-list">
   {% for item in cms.syllabi  %}
-    <a href="{{url(item)}}">{{item.name}}</a>
-    
+  
+      <li>
+      <a href="{{url(item)}}">{{item.name}}</a>
+      </li>  
   {% endfor %}
-    
+  </ul>
   
 </section>
 {% endblock %}

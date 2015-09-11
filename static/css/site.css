@@ -22,7 +22,7 @@ td, article p, h1, h2 {
 figure[data-type=image] figcaption {
   font-family: courier, monospace; }
 
-h3, h4 {
+h3, h4, .syllabi-list li, .download {
   font-family: "Atlas Grotesk", Arial, sans-serif; }
 
 p,
@@ -54,10 +54,10 @@ h1 {
   font-size: 20px;
   margin-right: 1em;
   display: inline-block; }
-  @media screen and (max-width: 599px) {
+  @media screen and (max-width: 999px) {
     h1 {
       margin-bottom: 1em; } }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 1000px) {
     h1 {
       display: inline-block; } }
 
@@ -134,12 +134,17 @@ article .course-information p {
   margin-bottom: 1em; }
 .syllabus .week {
   border-top: 1px solid #05d2c1; }
-  .syllabus .week p {
-    margin-left: 6.5em; }
+  @media screen and (min-width: 1000px) {
+    .syllabus .week p {
+      margin-left: 6.5em; } }
 .syllabus .week
 .readings p {
-  margin-left: 8.5em;
+  margin-left: 2em;
   text-indent: -2em; }
+  @media screen and (min-width: 1000px) {
+    .syllabus .week
+    .readings p {
+      margin-left: 8.5em; } }
 .syllabus .additional-bibliography {
   border-top: 1px solid #05d2c1; }
   .syllabus .additional-bibliography p {
@@ -202,7 +207,7 @@ button {
   text-transform: uppercase;
   font-size: 0.8em;
   letter-spacing: 2px; }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 1000px) {
     button {
       display: none; } }
 
@@ -213,7 +218,7 @@ button:focus {
 
 nav {
   display: none; }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 1000px) {
     nav {
       display: inline-block; } }
   nav ul {
@@ -237,7 +242,7 @@ nav {
       color: black;
       border-top: 1px solid #e6e6e6;
       border-bottom: 1px solid #e6e6e6; }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 1000px) {
     nav li {
       display: inline-block;
       padding: 0.5em;
@@ -304,6 +309,12 @@ form {
 
 .news:after {
   clear: both; }
+
+.syllabi-list {
+  padding-left: 0; }
+  .syllabi-list li {
+    list-style: none;
+    margin-bottom: 1em; }
 
 .download {
   letter-spacing: 1px; }

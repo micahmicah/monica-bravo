@@ -10,8 +10,7 @@
   
   {% for row in item.schedule  %}
   <div class="week clearfix">
-      <h3 class="week-number">Week {{row.week}}</h3>
-      <h3>{{row.subject}}</h3>
+      <h3 class="week-number">Week {{row.week}} | {{row.subject}}</h3>
       <p>{{row.day_one}}</p>
       <div class="readings">
          {{ row.day_one_readings|safe }}

@@ -9,10 +9,10 @@ Error: Undefined variable: "$link-color".
 135: .week{
 136: 	border-top:1px solid $link-color;
 137: 	p{
-138: 		margin-left:6.5em;
-139: 	}
-140: }
-141: 
+138: 		@media screen and (min-width:1000px){
+139: 			margin-left:6.5em;	
+140: 		}
+141: 		
 
 Backtrace:
 scss/module.scss:136
@@ -82,4 +82,4 @@ scss/module.scss:136
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$link-color\".\A         on line 136 of scss/module.scss\A \A 131: }\A 132: \A 133: \A 134: \A 135: .week{\A 136: 	border-top:1px solid $link-color;\A 137: 	p{\A 138: 		margin-left:6.5em;\A 139: 	}\A 140: }\A 141: "; }
+  content: "Error: Undefined variable: \"$link-color\".\A         on line 136 of scss/module.scss\A \A 131: }\A 132: \A 133: \A 134: \A 135: .week{\A 136: 	border-top:1px solid $link-color;\A 137: 	p{\A 138: 		@media screen and (min-width:1000px){\A 139: 			margin-left:6.5em;	\A 140: 		}\A 141: 		"; }
