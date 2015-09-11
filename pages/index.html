@@ -25,11 +25,13 @@
     </div>
   
     <div class="news">
+
       <ul>
-      {% for item in cms.news|sort('publis_date', true)|slice(0,3)  %}
+      <h4>Updates</h4>
+      {% for row in cms.news.announcements  %}
           <li>
-            <p class="date">{{item.publish_date|date('M j Y')}}</p>
-            {{item.news|safe}}
+            
+            {{row.announcement|safe}}
           </li>
       {% endfor %}
       </ul>

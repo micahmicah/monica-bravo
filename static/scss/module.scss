@@ -324,14 +324,17 @@ form{
 		float:left;
 		border-top:none;
 	}
-	.date{
+	.date,
+	h4{
 		font-family:"Atlas Grotesk", Arial;
 		text-transform:uppercase;
 		letter-spacing:1px;
 		font-size:0.7em;
 		font-weight:bold;
 		color:$middle-gray;
-		margin-bottom:0px;
+		padding-bottom:0.5em;
+		margin-top:2em;
+		border-bottom:1px solid $light-gray;
 	}
 	p{
 		margin-left:0em;
@@ -349,6 +352,9 @@ form{
 		max-width:100%;
 	}
 	li{
+		&:first-child{
+		border-top:1px solid $light-gray;	
+		}
 		list-style:none;
 		border-bottom:1px solid $light-gray;
 	}
