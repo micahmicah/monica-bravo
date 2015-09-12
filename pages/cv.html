@@ -91,7 +91,12 @@
         <h3>University Service</h3>
         {% for item in cms.service  %}
           <div class="cv">
-            <p>{{item.name}},
+            <p>
+            {% if item.name|endsWith('”') %}
+                {{item.name}}
+                {% else %}
+                {{item.name}},
+            {% endif %}
             {{item.department|safe}},
             {% for relation in item.institution  %}
               {{relation.name}},

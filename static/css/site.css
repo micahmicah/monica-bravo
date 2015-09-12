@@ -274,8 +274,9 @@ form {
     margin-right: 2em; } }
 
 .news {
-  border-top: 1px solid #e6e6e6; }
-  @media screen and (min-width: 600px) {
+  width: 100%;
+  float: left; }
+  @media screen and (min-width: 900px) {
     .news {
       width: 30%;
       float: left;
@@ -306,6 +307,9 @@ form {
     border-bottom: 1px solid #e6e6e6; }
     .news li:first-child {
       border-top: 1px solid #e6e6e6; }
+    @media screen and (min-width: 600px) {
+      .news li p {
+        width: 66%; } }
 
 .news:after {
   clear: both; }

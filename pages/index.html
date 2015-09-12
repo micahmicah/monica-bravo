@@ -16,11 +16,22 @@
   <div class="clearfix">
 
     <div class="intro">
-      <h2>Current Affiliations:
-        {% for row in cms.bio.affiliations %}
-            {{row.title}} at {{row.institution.name}}
-        {% endfor %}
-      </h2>
+
+      {% for row in cms.bio.affiliations  %}
+            {% if loop.revindex > 1 %}
+              <h2>Current Affiliations:
+                {% for row in cms.bio.affiliations  %}
+                  
+                  {{row.title}} at {{row.institution.name}}      
+                {% endfor %}
+              </h2>
+              {% elseif loop.revindex < 1%}
+              <h2>Current Afilliation:
+                {{row.title}} at {{row.institution.name}}
+              </h2>
+            {% endif %}
+      {% endfor %}
+
       <p>{{cms.bio.bio|safe}}</p>
     </div>
   

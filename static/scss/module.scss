@@ -255,6 +255,8 @@ nav{
 	ul{
 		padding:0em;
 		list-style:none;
+		// display:flex;
+		// -webkit-column-count:2;
 		
 	}
 
@@ -265,6 +267,7 @@ nav{
 			font-weight:bold;
 			font-size:0.8em;
 			border-bottom:1px solid rgb(240,240,240);
+			
 			a:link,
 			a:visited{
 				display:block;
@@ -324,8 +327,10 @@ form{
 }
 
 .news{
-	border-top:1px solid $light-gray;
-	@media screen and (min-width:600px){
+	// border-top:1px solid $light-gray;
+	width:100%;
+	float:left;
+	@media screen and (min-width:900px){
 		width:30%;
 		float:left;
 		border-top:none;
@@ -363,6 +368,11 @@ form{
 		}
 		list-style:none;
 		border-bottom:1px solid $light-gray;
+		@media screen and (min-width:600px){
+			p{
+				width:66%;
+			}
+		}
 	}
 }
 
