@@ -11,12 +11,16 @@ section{
 }
 
 figure[data-type=image]{
+	max-width:100%;
 	a{
 		@extend %link-no-underline;
 	}
 	figcaption{
 		@extend %caption-type;
 		@extend %small-type;
+		text-align:left;
+		line-height:1.4em;
+		max-width:50%;
 	}
 }
 
@@ -76,6 +80,7 @@ article{
 		}
 		img{
 			width:auto;
+			max-width:100%;
 		}
 
 		figure[data-type=table]{
@@ -313,7 +318,7 @@ nav{
 
 //  SEARCH --------------------------------
 form{
-	display:none;
+	// display:none;
 }
 
 // HOMEPAGE

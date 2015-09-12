@@ -16,21 +16,23 @@
   <div class="clearfix">
 
     <div class="intro">
+      
+      {% set affiliationLabel = "Current Affilation: " %}
+      {% if cms.bio.affiliations|size > 1 %}
+             {% set affiliationLabel = "Current Affiliations: "%}
+      {% endif %} 
 
+      {% set affiliations = "" %}
+      
       {% for row in cms.bio.affiliations  %}
-            {% if loop.revindex > 1 %}
-              <h2>Current Affiliations:
-                {% for row in cms.bio.affiliations  %}
-                  
-                  {{row.title}} at {{row.institution.name}}      
-                {% endfor %}
-              </h2>
-              {% elseif loop.revindex < 1%}
-              <h2>Current Afilliation:
-                {{row.title}} at {{row.institution.name}}
-              </h2>
-            {% endif %}
+            {% set currentAffiliation = row.title + " at " + row.institution.name %}
+            {% if !loop.last %}
+               {% set currentAffiliation = currentAffiliation + " and " %}
+             {% endif %} 
+             {% set affiliations += currentAffiliation %}
       {% endfor %}
+
+      <h2>{{affiliationLabel}} {{affiliations}}</h2>
 
       <p>{{cms.bio.bio|safe}}</p>
     </div>

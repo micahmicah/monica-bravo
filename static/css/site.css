@@ -16,13 +16,13 @@ section .download, article {
 p,
 li,
 address,
-td, article p, h1, h2 {
+td, article p, h1, h2, ::-webkit-input-placeholder, .modal-overlay label, .modal-overlay h3 {
   font-family: "Tiempos Text", Georgia; }
 
 figure[data-type=image] figcaption {
   font-family: courier, monospace; }
 
-h3, h4, .syllabi-list li, .download {
+h3, h4, .syllabi-list li, .download, .modal-overlay input[type=submit] {
   font-family: "Atlas Grotesk", Arial, sans-serif; }
 
 p,
@@ -63,7 +63,7 @@ h1 {
 
 h2 {
   font-weight: normal;
-  line-height: 2em; }
+  line-height: 1.6em; }
 
 h3 {
   text-transform: uppercase;
@@ -95,6 +95,13 @@ figure[data-type=image] a {
 section .download {
   display: inline-block; }
 
+figure[data-type=image] {
+  max-width: 100%; }
+  figure[data-type=image] figcaption {
+    text-align: left;
+    line-height: 1.4em;
+    max-width: 50%; }
+
 article .course-information p {
   text-indent: 0em; }
 
@@ -104,7 +111,8 @@ article .course-information p {
   .syllabus figure[data-type=image].wy-figure-large {
     width: auto; }
   .syllabus figure[data-type=image] img {
-    width: auto; }
+    width: auto;
+    max-width: 100%; }
   .syllabus figure[data-type=image] figure[data-type=table] {
     margin: 0em; }
     @media screen and (min-width: 600px) {
@@ -264,9 +272,6 @@ nav {
   background: white;
   z-index: 10; }
 
-form {
-  display: none; }
-
 @media screen and (min-width: 600px) {
   .intro {
     width: 66%;
@@ -354,6 +359,63 @@ form {
   @media screen and (min-width: 767px) and (max-height: 745px) {
     .hero {
       background-position: 0vw -10vh; } }
+
+::-webkit-input-placeholder {
+  color: #c8c8c8;
+  text-align: center; }
+
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  z-index: 2;
+  margin: 0;
+  top: 0;
+  left: 0; }
+  .modal-overlay .modal-box {
+    width: 95%;
+    background: white;
+    margin: 1em auto;
+    padding: 1em; }
+    @media screen and (min-width: 600px) {
+      .modal-overlay .modal-box {
+        width: 400px; } }
+  .modal-overlay input[type=submit] {
+    background: #05d2c1;
+    width: 100%;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.7em;
+    padding: 1em;
+    color: white;
+    letter-spacing: 1px;
+    margin: 0.5em auto;
+    display: block; }
+  .modal-overlay input[type=password] {
+    padding: 0.25em 0em;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    font-size: 1.5em;
+    text-align: center;
+    outline: none; }
+    .modal-overlay input[type=password]:focus {
+      outline: none;
+      border: 2px solid #05d2c1; }
+  .modal-overlay h3 {
+    font-weight: normal;
+    letter-spacing: 0px;
+    text-align: center;
+    text-transform: none;
+    font-size: 1.5em;
+    line-height: 1.4em; }
+    .modal-overlay h3 a {
+      display: inline-block;
+      margin-top: 1em; }
 
 @media print {
   nav, input {
