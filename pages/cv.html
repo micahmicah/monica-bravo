@@ -3,9 +3,13 @@
 
 {% block title %}{% parent %} - {{ cms.bio.name }}{% endblock %}
 {% block content %}
-  
+
+
 
 <section class="cv">
+    <div class="contact-info">
+        {% include "templates/partials/contact-info.html" %} 
+   </div>
   <h2>CV</h2>
   <a class="download" href="{{ cms.bio.cv.url }}">Download CV</a>
 
@@ -47,7 +51,7 @@
         {% endfor %}
         </p>
 
-        <p>
+        <p class="dissertation-summary">
           Summary: {{cms.research.dissertation_abstract|safe}}
         </p>
     </article>
@@ -76,7 +80,13 @@
             {% include "templates/partials/teaching-experience.html" %}
         {% endblock %} 
     </article>
-  
+
+    {% include "templates/partials/publications.html" %}
+    
+    {% include "templates/partials/exhibitions-curated.html" %}
+
+       {% include "templates/partials/presentations.html" %}
+
 
     <article class="pedagogical-and-technical-training cv-entry">
         <h3>Pedagogical and Technical Training</h3>

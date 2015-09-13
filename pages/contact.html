@@ -17,15 +17,6 @@
 
  
   <img class="portrait" src="{{cms.bio.portraits[1].url|imageSize(400)}}" />
-  <p>
-    <a href="tel:{{cms.bio.cell}}">{{cms.bio.cell}}</a><br/>
-    <a href="mailto:{{cms.bio.university_email}}">{{cms.bio.university_email}}</a><br/>
-  </p>
-
-  <address>
-    {{ cms.bio.university_address.street1 }}<br/>
-    {% if cms.bio.university_address.street2 %}{{ cms.bio.university_address.street2 }}<br/>{% endif %}
-    {{ cms.bio.university_address.city }}, {{ cms.bio.university_address.state }}. {{ cms.bio.university_address.country }} {{ cms.bio.university_address.zip }}
-  </address>
+  {% include "templates/partials/contact-info.html" %} 
 
 {% endblock %}

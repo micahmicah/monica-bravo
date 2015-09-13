@@ -20,24 +20,11 @@
       </p>
       {% endfor %}
   </article>
+  {% include "templates/partials/publications.html" %}
+  
+  {% include "templates/partials/exhibitions-curated.html" %}
 
-    <article class="publications">
-        <h3>Publications</h3>
-        {% for row in cms.research.publications  %}
-            <div class="publication">
-                <p>{{row.title|safe}} {{row.journal|safe}} {{row.timeframe}}</p>
-            </div>
-        {% endfor %}
-    </article>
-
-    <article class="exhibitions-curated">
-        <h3>Exhibitions Curated</h3>
-        {% for row in cms.research.exhibitions_curated  %}
-            <div class="exhibition">
-                <p>{{row.title|safe}} {{row.location.street1}}, {{row.location.city}}, {{row.location.state}}, {{row.role}}, {{row.timeframe}} </p>
-            </div>
-        {% endfor %}
-      </article>
+    
         
 </section>
 

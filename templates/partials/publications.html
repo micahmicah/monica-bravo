@@ -1,0 +1,8 @@
+<article class="publications">
+        <h3>Publications</h3>
+        {% for row in cms.research.publications  %}
+            <div class="publication">
+                <p>{{row.title|safe}} {{row.journal|safe}} {{row.timeframe}}</p>
+            </div>
+        {% endfor %}
+    </article>

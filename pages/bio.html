@@ -98,12 +98,24 @@
         </address>
       </li>
       <li>
+        <strong>Office Address: </strong>
+        <address>
+          {{ cms.bio.office_address.street1 }}<br/>
+          {% if cms.bio.office_address.street2 %}{{ cms.bio.office_address.street2 }}<br/>{% endif %}
+          {{ cms.bio.office_address.city }}, {{ cms.bio.office_address.state }}. {{ cms.bio.office_address.country }} {{ cms.bio.office_address.zip }}
+        </address>
+      </li>
+      <li>
         <strong>Office Phone: </strong>
         {{ cms.bio.office_phone }}
       </li>
       <li>
         <strong>Cell: </strong>
         {{ cms.bio.cell }}
+      </li>
+      <li>
+        <strong>Office Email: </strong>
+        {{ cms.bio.office_email }}
       </li>
       <li>
         <strong>University Email: </strong>

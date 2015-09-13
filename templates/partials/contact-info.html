@@ -1,0 +1,16 @@
+<p>
+    <a href="tel:{{cms.bio.cell}}">{{cms.bio.cell}}</a><br/>
+    <a href="mailto:{{cms.bio.university_email}}">{{cms.bio.university_email}}</a><br/>
+  </p>
+
+  <address>
+    {{ cms.bio.university_address.street1 }}<br/>
+    {% if cms.bio.university_address.street2 %}{{ cms.bio.university_address.street2 }}<br/>{% endif %}
+    {{ cms.bio.university_address.city }}, {{ cms.bio.university_address.state }} {{ cms.bio.university_address.country }} {{ cms.bio.university_address.zip }}
+  </address>
+
+  <address>
+    {{ cms.bio.office_address.street1|safe }}<br/>
+    {% if cms.bio.office_address.street2 %}{{ cms.bio.office_address.street2 }}<br/>{% endif %}
+    {{ cms.bio.office_address.city }}, {{ cms.bio.office_address.state }} {{ cms.bio.office_address.country }} {{ cms.bio.office_address.zip }}
+  </address>

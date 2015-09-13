@@ -1,0 +1,6 @@
+<article class="presentations">
+	<h3>Conferences and Public Lectures</h3>
+	{% for row in cms.research.presentations  %}
+		<p>{{row.name}} {{row.timeframe}}<br> {{row.description|safe}}</p>				
+	{% endfor %}
+</article>

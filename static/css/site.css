@@ -272,6 +272,9 @@ nav {
   background: white;
   z-index: 10; }
 
+.cv .contact-info {
+  display: none; }
+
 @media screen and (min-width: 600px) {
   .intro {
     width: 66%;
@@ -425,7 +428,40 @@ nav {
     font-size: 11pt; }
 
   button,
-  .download {
-    display: none; } }
+  a.download {
+    display: none; }
+
+  .cv .contact-info {
+    display: block;
+    clear: both; }
+  .cv p,
+  .cv address {
+    font-size: 10pt;
+    line-height: 13pt; }
+  .cv h3 {
+    font-size: 9pt; }
+  .cv address {
+    float: left;
+    width: 50%; }
+  .cv h2 {
+    display: none; }
+  .cv article {
+    margin-bottom: 2em; }
+  .cv a:link, .cv a:visited {
+    border-bottom: none; }
+  .cv .dissertation-summary {
+    display: none; }
+
+  .nav-bar {
+    border-top: none;
+    margin-bottom: 1rem; }
+
+  @page {
+    padding-bottom: 72pt;
+    margin-top: 63pt;
+    margin-right: 1in; }
+  @page :first {
+    margin-top: 36pt;
+    border-top: 2px solid #05d2c1; } }
 
 /*# sourceMappingURL=site.css.map */
