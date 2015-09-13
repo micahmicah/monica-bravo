@@ -33,7 +33,11 @@
 
    {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
     <div class="degree">
-      <p>{{row.title}}, {{row.department}}, {{ row.institution.name }}, {{row.timeframe}}. {{row.overview}}</p>
+      <p>{{row.title}}, {{row.department}}, 
+      {% if row.instutition %}
+        {{ row.institution.name }},
+      {% endif %}
+       {{row.timeframe}}. {{row.overview}}</p>
     </div>
    {% endfor %}
   </article>

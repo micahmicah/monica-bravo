@@ -272,6 +272,18 @@ nav {
   background: white;
   z-index: 10; }
 
+.contact-info {
+  clear: both; }
+  .contact-info article.contact {
+    margin-bottom: 0em;
+    float: left;
+    margin-left: 1.5em; }
+    .contact-info article.contact:nth-child(2) {
+      margin-left: 0em; }
+    .contact-info article.contact p.e-mail {
+      margin: 0em;
+      text-indent: 0em; }
+
 .cv .contact-info {
   display: none; }
 
@@ -446,7 +458,8 @@ nav {
   .cv h2 {
     display: none; }
   .cv article {
-    margin-bottom: 2em; }
+    margin-bottom: 2em;
+    float: none; }
   .cv a:link, .cv a:visited {
     border-bottom: none; }
   .cv .dissertation-summary {
