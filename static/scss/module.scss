@@ -318,17 +318,24 @@ nav{
 // CONTACt --------------------------------
 .contact-info{
 	clear:both;
-	
+	margin-top:2em;
+
+	.label{
+		border-bottom:none;
+	}
 	article.contact{
 		margin-bottom:0em;
 		float:left;
-		margin-left:1.5em;
+		margin-right:1.5em;
 		&:nth-child(2){
 			margin-left:0em;
 		}
 		p.e-mail{
 			margin:0em;
 			text-indent:0em;
+		}
+		address{
+			
 		}
 	}
 }
