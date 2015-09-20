@@ -337,7 +337,7 @@ nav {
       .entry-description p {
         margin-top: 0em; } }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
   .intro {
     width: 66%;
     float: left;
@@ -363,9 +363,9 @@ nav {
 .news {
   width: 100%;
   float: left; }
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 700px) {
     .news {
-      width: 30%;
+      width: 29%;
       float: left;
       border-top: none; } }
   .news .date,
@@ -393,9 +393,6 @@ nav {
     border-bottom: 1px solid #e6e6e6; }
     .news li:first-child {
       border-top: 1px solid #e6e6e6; }
-    @media screen and (min-width: 600px) {
-      .news li p {
-        width: 66%; } }
 
 .news:after {
   clear: both; }
@@ -444,6 +441,9 @@ nav {
 ::-webkit-input-placeholder {
   color: #c8c8c8;
   text-align: center; }
+
+section.hidden {
+  display: none; }
 
 .modal-overlay {
   width: 100%;

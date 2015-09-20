@@ -423,7 +423,7 @@ form{
 
 // HOMEPAGE
 .intro{
-	@media screen and (min-width:600px){
+	@media screen and (min-width:700px){
 		width:66%;
 		float:left;
 		margin-right:2em;
@@ -459,8 +459,8 @@ form{
 	// border-top:1px solid $light-gray;
 	width:100%;
 	float:left;
-	@media screen and (min-width:900px){
-		width:30%;
+	@media screen and (min-width:700px){
+		width:29%;
 		float:left;
 		border-top:none;
 	}
@@ -499,7 +499,7 @@ form{
 		border-bottom:1px solid $light-gray;
 		@media screen and (min-width:600px){
 			p{
-				width:66%;
+				// width:66%;
 			}
 		}
 	}

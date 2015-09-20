@@ -105,11 +105,11 @@
             {% if item.name|endsWith('”') %}
                 {{item.name}}
                 {% else %}
-                {{item.name}},
+                {{item.name}}
             {% endif %}
             {{item.department|safe}},
             {% for relation in item.institution  %}
-              {{relation.name}},
+              {{relation.name}}
             {% endfor %}
             
             </p>
