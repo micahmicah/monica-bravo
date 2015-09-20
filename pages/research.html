@@ -12,14 +12,10 @@
     <p>{{ cms.research.dissertation_abstract }}</p>
   </article>
 
-  <article class="grants-and-fellowships">
-    <h3>Grants and Fellowships</h3>
-    {% for row in cms.research.grants_and_fellowships %}
-      <p>{{ row.name}}, {{ row.institution.name }}, {{row.institution.address.city}}, {{row.institution.address.state}},  {{ row.timeframe }}
-        
-      </p>
-      {% endfor %}
-  </article>
+  <article class="grants-and-fellowships cv-entry clearfix">
+        {% include "templates/partials/grants-and-fellowships.html" %}
+    </article>
+  
   {% include "templates/partials/publications.html" %}
   
   {% include "templates/partials/exhibitions-curated.html" %}

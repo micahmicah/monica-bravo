@@ -298,6 +298,42 @@ nav {
 .cv .contact-info {
   display: none; }
 
+.row {
+  float: left;
+  width: 100%; }
+
+.entry-time-frame {
+  display: block;
+  width: 100%; }
+  @media screen and (min-width: 600px) {
+    .entry-time-frame {
+      float: left;
+      width: 18%;
+      margin-right: 0.5em; } }
+  .entry-time-frame p {
+    text-indent: 0em;
+    margin-left: 0em; }
+    @media screen and (max-width: 599px) {
+      .entry-time-frame p {
+        margin-bottom: 0em; } }
+
+.entry-description {
+  display: block;
+  margin-bottom: 0.5em;
+  width: 100%; }
+  @media screen and (min-width: 600px) {
+    .entry-description {
+      float: left;
+      width: 78%; } }
+  .entry-description p {
+    width: 100%;
+    max-width: 100%;
+    text-indent: 0em;
+    margin-left: 0em; }
+    @media screen and (max-width: 599px) {
+      .entry-description p {
+        margin-top: 0em; } }
+
 @media screen and (min-width: 600px) {
   .intro {
     width: 66%;

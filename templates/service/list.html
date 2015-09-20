@@ -12,23 +12,28 @@
   
 
   <h2>Service</h2>
-  <article>
-  {% for item in cms.service  %}
-    
-      <p>
-      {% if item.name|endsWith('”') %}
-        {{item.name}}
-        {% else %}
-        {{item.name}},
-      {% endif %}
-      {{item.department|safe}},
-      {% for relation in item.institution  %}
-        {{relation.name}},
-      {% endfor %}
-      {{item.timeframe}}
-      </p>
-    
-  {% endfor %}
-  </article>
-
+  <section>
+  <article class="university-service cv-entry clearfix">
+        
+        {% for item in cms.service  %}
+            <div class="entry-time-frame">
+                <p>{{item.timeframe}}</p>
+            </div>
+          <div class="entry-description">
+            <p>
+            {% if item.name|endsWith('”') %}
+                {{item.name}}
+                {% else %}
+                {{item.name}},
+            {% endif %}
+            {{item.department|safe}},
+            {% for relation in item.institution  %}
+              {{relation.name}},
+            {% endfor %}
+            
+            </p>
+          </div>
+        {% endfor %}
+    </article>
+</section>
 {% endblock %}

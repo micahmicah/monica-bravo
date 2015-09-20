@@ -26,9 +26,9 @@
                     {{ row.year }}
 
                     {% if row.additional_notes %}
-                        <div class="accolades">
-                            {{ row.additional_notes|safe }}
-                        </div>
+                        <br>
+                            {{ row.additional_notes }}
+                        
                     {% endif %}
                 </p>
             </div>
@@ -61,21 +61,15 @@
         {{cms.research.research_and_teaching_interests|safe}}
     </article>
 
-    <article class="grants-and-fellowships cv-entry">
-        <h3>Grants and Fellowships</h3>
-        {% for row in cms.research.grants_and_fellowships  %}
-            <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}}, {{row.institution.address.state}}, {{row.timeframe}}</p>
-        {% endfor %}
+    <article class="grants-and-fellowships cv-entry clearfix">
+        {% include "templates/partials/grants-and-fellowships.html" %}
     </article>
   
-    <article class="travel-awards cv-entry">
-        <h3>Travel Awards</h3>
-        {% for row in cms.research.travel_awards  %}
-              <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}}, {{row.timeframe}}</p>
-        {% endfor %}
+    <article class="travel-awards cv-entry clearfix">
+        {% include "templates/partials/travel-awards.html" %}
     </article>
     
-    <article class="teaching-experience cv-entry">
+    <article class="teaching-experience cv-entry clearfix">
         {% block experience %}
             {% include "templates/partials/teaching-experience.html" %}
         {% endblock %} 
@@ -88,19 +82,25 @@
        {% include "templates/partials/presentations.html" %}
 
 
-    <article class="pedagogical-and-technical-training cv-entry">
+    <article class="pedagogical-and-technical-training clearfix cv-entry">
         <h3>Pedagogical and Technical Training</h3>
         {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
-        <div class="degree">
-          <p>{{row.title}}, {{row.department}}, {{ row.institution.name }}, {{row.timeframe}}. {{row.overview}}</p>
+        <div class="entry-time-frame">
+            <p>{{row.timeframe}}</p>
+        </div>
+        <div class="entry-description">
+          <p>{{row.title}}, {{row.department}}{% if row.institution %}, {{ row.institution.name }}{% endif %}. {{row.overview}}</p>
         </div>
        {% endfor %}
     </article>
 
-    <article class="university-service cv-entry">
+    <article class="university-service cv-entry clearfix">
         <h3>University Service</h3>
         {% for item in cms.service  %}
-          <div class="cv">
+            <div class="entry-time-frame">
+                <p>{{item.timeframe}}</p>
+            </div>
+          <div class="entry-description">
             <p>
             {% if item.name|endsWith('”') %}
                 {{item.name}}
@@ -111,32 +111,45 @@
             {% for relation in item.institution  %}
               {{relation.name}},
             {% endfor %}
-            {{item.timeframe}}
+            
             </p>
           </div>
         {% endfor %}
     </article>
     
-    <article class="professional-experience cv-entry">
+
+    <article class="clearfix cv-entry">
         <h3>Professional Experience</h3>
-        {% for item in cms.professionalexperience  %}
-        <div class="cv">
-          <p>{{item.position}},
-          {% for relation in item.institution  %}
-            {{relation.name}}, 
-          {% endfor %}
-          {{item.timeframe}}
-          </p>
-        </div>
-      {% endfor %}
-    </article>
-    
-    <article class="professional-affiliations cv-entry">
-        <h3>Professional Affiliations</h3>
-        {% for row in cms.bio.professional_affiliations %}
-            <p>{{row.affiliation}}, {{row.timeframe}}</p>
+        {% for row in cms.professionalexperience  %}
+            <div class="row clearfix">
+            <div class="entry-time-frame">
+                {# <p>{{row.timeframe}}</p> #}
+                <p>{{row.timeframe}}</p>
+            </div>
+            <div class="entry-description">
+                <p>{{row.position}}, {% for relation in row.institution %}
+                   {{relation.name}} 
+                {% endfor %}</p>
+            </div>
+            </div>
         {% endfor %}
     </article>
+    
+    <article class="professional-affiliations clearfix cv-entry">
+        <h3>Professional Affiliations</h3>
+        {% for row in cms.bio.professional_affiliations %}
+            <div class="entry-time-frame">
+                <p>{{row.timeframe}}</p>
+            </div>
+            <div class="entry-description">
+                <p>{{row.affiliation}}</p>
+            </div>
+            
+        {% endfor %}
+    </article>
+    
+    
+
     
     <article class="languages cv-entry">
         <h3>Languages</h3>

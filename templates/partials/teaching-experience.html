@@ -1,8 +1,12 @@
  <h3>Teaching Experience</h3>
   {% for row in cms.teaching.experience %}
-      <p>{{row.title}} at{% for relation in row %}{{relation.name}}{% endfor %}: {{row.responsibilities}}
-          <div class="course-information">
-	          {{row.course_information|safe}}
-          </div>
-      </p>
+		<div class="entry-time-frame">
+			<p>{{row.timeframe}}</p>
+		</div>
+		<div class="entry-description">
+			<p>{{row.title}} at {% for relation in row %}{{relation.name}}{% endfor %}<br>
+{{row.courses|safe}}
+			</p>
+		</div>
+     
   {% endfor %}

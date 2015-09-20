@@ -1,0 +1,9 @@
+<h3>Grants and Fellowships</h3>
+        {% for row in cms.research.grants_and_fellowships  %}
+            <div class="entry-time-frame">
+               <p>{{row.timeframe}}</p> 
+            </div>
+            <div class="entry-description">
+                <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}}, {{row.institution.address.state}}</p>
+            </div>
+        {% endfor %}

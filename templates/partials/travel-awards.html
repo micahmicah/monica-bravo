@@ -1,0 +1,9 @@
+<h3>Travel Awards</h3>
+        {% for row in cms.research.travel_awards  %}
+        <div class="entry-time-frame">
+            <p>{{row.timeframe|safe}}</p>
+        </div>
+        <div class="entry-description">
+              <p>{{row.name}}, {{row.institution.name}}, {{row.institution.address.city}} </p>
+        </div>
+        {% endfor %}

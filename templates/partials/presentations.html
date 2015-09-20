@@ -1,6 +1,12 @@
-<article class="presentations">
+<article class="presentations clearfix">
 	<h3>Conferences and Public Lectures</h3>
 	{% for row in cms.research.presentations  %}
-		<p>{{row.name}} {{row.timeframe}}<br> {{row.description|safe}}</p>				
+		<div class="entry-time-frame">
+			<p>{{row.timeframe}}</p>
+		</div>
+		<div class="entry-description">
+			<p>{{row.name|safe}} <br> {{row.description|safe}}</p>
+		</div>
+						
 	{% endfor %}
 </article>

@@ -29,19 +29,17 @@
   {% endfor %}
   </article>
   
-  <article class="pedagogical-and-technical-training">
-    <h3>Pedagogical and Technical Training</h3>
-
-   {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
-    <div class="degree">
-      <p>{{row.title}}, {{row.department}}, 
-      {% if row.instutition %}
-        {{ row.institution.name }},
-      {% endif %}
-       {{row.timeframe}}. {{row.overview}}</p>
-    </div>
-   {% endfor %}
-  </article>
+  <article class="pedagogical-and-technical-training clearfix cv-entry">
+        <h3>Pedagogical and Technical Training</h3>
+        {% for row in cms.educationandtraining.pedagogical_and_technical_training %}
+        <div class="entry-time-frame">
+            <p>{{row.timeframe}}</p>
+        </div>
+        <div class="entry-description">
+          <p>{{row.title}}, {{row.department}}{% if row.institution %}, {{ row.institution.name }}{% endif %}. {{row.overview}}</p>
+        </div>
+       {% endfor %}
+    </article>
   
 </section>
   
