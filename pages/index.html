@@ -19,20 +19,27 @@
       
       {% set affiliationLabel = "Current Affilation: " %}
       {% if cms.bio.affiliations|size > 1 %}
-             {% set affiliationLabel = "Current Affiliations: "%}
+             {% set affiliationLabel = "Current Affiliations "%}
       {% endif %} 
 
       {% set affiliations = "" %}
       
-      {% for row in cms.bio.affiliations  %}
+   {#    {% for row in cms.bio.affiliations  %}
             {% set currentAffiliation = row.title + " at " + row.institution.name %}
             {% if !loop.last %}
                {% set currentAffiliation = currentAffiliation + " and " %}
              {% endif %} 
              {% set affiliations += currentAffiliation %}
-      {% endfor %}
+      {% endfor %} #}
 
-      <h2>{{affiliationLabel}} {{affiliations}}</h2>
+      <h4 class="label">{{affiliationLabel}}</h4> 
+      {% for row in cms.bio.affiliations %}
+          <div class="affiliation">
+            <h2>
+              {{row.title}} at {{row.institution.name}}
+            </h2>
+          </div>
+      {% endfor %}
 
       <p>{{cms.bio.bio|safe}}</p>
     </div>

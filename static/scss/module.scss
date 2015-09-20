@@ -333,6 +333,14 @@ nav{
 	}
 }
 
+svg{
+	// height:16px;
+	path{
+		fill:$link-color;
+	}
+
+}
+
 // CV -------------------------------------
 .cv{
 	.contact-info{
@@ -351,7 +359,31 @@ form{
 		float:left;
 		margin-right:2em;
 	}
+	.affiliation{
+		
+		border-bottom:1px solid $light-gray;
+		
+		h2{
+			max-width:500px;
+			margin-top:0em;
+			margin-bottom:0em;
+			padding:0.5em 0em;
+
+		}
+	}
 	
+}
+
+.label{
+	@extend %sans-serif-type;
+		text-transform:uppercase;
+		letter-spacing:1px;
+		font-size:0.7em;
+		font-weight:bold;
+		color:$middle-gray;
+		padding-bottom:0.5em;
+		margin-top:2em;
+		border-bottom:1px solid $light-gray;
 }
 
 .news{
@@ -365,7 +397,7 @@ form{
 	}
 	.date,
 	h4{
-		font-family:"Atlas Grotesk", Arial;
+		@extend %sans-serif-type;
 		text-transform:uppercase;
 		letter-spacing:1px;
 		font-size:0.7em;

@@ -22,7 +22,8 @@ td, article p, h1, h2, ::-webkit-input-placeholder, .modal-overlay label, .modal
 figure[data-type=image] figcaption {
   font-family: courier, monospace; }
 
-h3, h4, .syllabi-list li, .download, .modal-overlay input[type=submit] {
+h3, h4, .label, .news .date,
+.news h4, .syllabi-list li, .download, .modal-overlay input[type=submit] {
   font-family: "Atlas Grotesk", Arial, sans-serif; }
 
 p,
@@ -284,6 +285,9 @@ nav {
       margin: 0em;
       text-indent: 0em; }
 
+svg path {
+  fill: #05d2c1; }
+
 .cv .contact-info {
   display: none; }
 
@@ -292,6 +296,23 @@ nav {
     width: 66%;
     float: left;
     margin-right: 2em; } }
+.intro .affiliation {
+  border-bottom: 1px solid #e6e6e6; }
+  .intro .affiliation h2 {
+    max-width: 500px;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    padding: 0.5em 0em; }
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #c8c8c8;
+  padding-bottom: 0.5em;
+  margin-top: 2em;
+  border-bottom: 1px solid #e6e6e6; }
 
 .news {
   width: 100%;
@@ -303,7 +324,6 @@ nav {
       border-top: none; } }
   .news .date,
   .news h4 {
-    font-family: "Atlas Grotesk", Arial;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 0.7em;
@@ -446,6 +466,8 @@ nav {
   .cv .contact-info {
     display: block;
     clear: both; }
+    .cv .contact-info article {
+      width: 50%; }
   .cv p,
   .cv address {
     font-size: 10pt;

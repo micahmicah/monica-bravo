@@ -1,19 +1,19 @@
 /*
 Error: Undefined variable: "$link-color".
-        on line 63 of scss/print.scss
+        on line 66 of scss/print.scss
 
-58:  		// size:5.5in 8.5in;
-59:  		
-60: 	}
-61: 	@page:first{
-62: 		margin-top:36pt;
-63: 		border-top:2px solid $link-color;
-64: 	}
-65: 
-66: }
+61:  		// size:5.5in 8.5in;
+62:  		
+63: 	}
+64: 	@page:first{
+65: 		margin-top:36pt;
+66: 		border-top:2px solid $link-color;
+67: 	}
+68: 
+69: }
 
 Backtrace:
-scss/print.scss:63
+scss/print.scss:66
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `block in _perform'
@@ -83,4 +83,4 @@ scss/print.scss:63
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$link-color\".\A         on line 63 of scss/print.scss\A \A 58:  		// size:5.5in 8.5in;\A 59:  		\A 60: 	}\A 61: 	@page:first{\A 62: 		margin-top:36pt;\A 63: 		border-top:2px solid $link-color;\A 64: 	}\A 65: \A 66: }"; }
+  content: "Error: Undefined variable: \"$link-color\".\A         on line 66 of scss/print.scss\A \A 61:  		// size:5.5in 8.5in;\A 62:  		\A 63: 	}\A 64: 	@page:first{\A 65: 		margin-top:36pt;\A 66: 		border-top:2px solid $link-color;\A 67: 	}\A 68: \A 69: }"; }
