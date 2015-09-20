@@ -18,9 +18,10 @@
         {{ row.year }}
       
             {% if row.additional_notes %}
-            <div class="accolades">
-              {{ row.additional_notes|safe }}
-              </div>
+            <br>
+            {# <div class="accolades"> #}
+              {{ row.additional_notes }}
+              {# </div> #}
             {% endif %}
       
     </p>
