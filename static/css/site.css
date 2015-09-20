@@ -285,8 +285,15 @@ nav {
       margin: 0em;
       text-indent: 0em; }
 
-svg path {
-  fill: #05d2c1; }
+.social-links {
+  width: 100%;
+  margin-top: 2em; }
+  .social-links .logo {
+    display: inline-block; }
+    .social-links .logo svg path {
+      fill: #05d2c1; }
+    .social-links .logo svg:hover path {
+      fill: black; }
 
 .cv .contact-info {
   display: none; }

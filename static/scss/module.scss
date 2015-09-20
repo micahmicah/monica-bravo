@@ -333,13 +333,28 @@ nav{
 	}
 }
 
-svg{
-	// height:16px;
-	path{
-		fill:$link-color;
-	}
+.social-links{
+	width:100%;
+	// display:block;
+	margin-top:2em;
 
+	.logo{
+		display:inline-block;
+		svg{
+		// max-height:16px;
+			path{
+				fill:$link-color;
+			}
+			&:hover{
+				path{
+					fill:black;
+				}
+			}
+		}
+	}
 }
+
+
 
 // CV -------------------------------------
 .cv{
