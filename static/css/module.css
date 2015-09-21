@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$link-color".
-        on line 141 of scss/module.scss
+        on line 142 of scss/module.scss
 
-136: }
-137: 
+137: }
 138: 
 139: 
-140: .week{
-141: 	border-top:1px solid $link-color;
-142: 	p{
-143: 		@media screen and (min-width:1000px){
-144: 			margin-left:6.5em;	
-145: 		}
-146: 		
+140: 
+141: .week{
+142: 	border-top:1px solid $link-color;
+143: 	p{
+144: 		@media screen and (min-width:1000px){
+145: 			margin-left:6.5em;	
+146: 		}
+147: 		
 
 Backtrace:
-scss/module.scss:141
+scss/module.scss:142
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/mbarrett/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/sass-3.4.9/lib/sass/script/tree/list_literal.rb:62:in `block in _perform'
@@ -82,4 +82,4 @@ scss/module.scss:141
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$link-color\".\A         on line 141 of scss/module.scss\A \A 136: }\A 137: \A 138: \A 139: \A 140: .week{\A 141: 	border-top:1px solid $link-color;\A 142: 	p{\A 143: 		@media screen and (min-width:1000px){\A 144: 			margin-left:6.5em;	\A 145: 		}\A 146: 		"; }
+  content: "Error: Undefined variable: \"$link-color\".\A         on line 142 of scss/module.scss\A \A 137: }\A 138: \A 139: \A 140: \A 141: .week{\A 142: 	border-top:1px solid $link-color;\A 143: 	p{\A 144: 		@media screen and (min-width:1000px){\A 145: 			margin-left:6.5em;	\A 146: 		}\A 147: 		"; }

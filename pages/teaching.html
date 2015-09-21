@@ -4,9 +4,9 @@
 {% block title %}{% parent %} - {{ cms.teaching.name }}{% endblock %}
 {% block content %}
 
-{# {% include "templates/partials/password.html" %} #}
+{% include "templates/partials/password.html" %}
 
-<section class="teaching">
+<section class="teaching hidden">
   <h2>{{ cms.teaching.name }}</h2>
   
   <p class="download"><a href="{{ cms.teaching.portfolio.url }}">Download Teaching Portfolio</a></p>

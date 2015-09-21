@@ -41,7 +41,8 @@ h1 {
 h2 {
   font-weight: normal;
   line-height: 1.6em;
-  font-size: 1.6em; }
+  font-size: 1.6em;
+  margin-top: 2em; }
 
 h3 {
   text-transform: uppercase;

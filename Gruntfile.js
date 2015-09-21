@@ -16,9 +16,52 @@ module.exports = function(grunt) {
   // You have been warned!
   grunt.initConfig({
 
-  });
+    watch: {
+            sass: {
+                files: ['static/scss/**/*.scss'],
+                tasks: ['sass',
+                'build-static']
+            },
+            browserify: {
+                files: ['script/src/**/*.js'],
+                tasks: [
+                'browserify:client',
+                'build-static']
+            }
+        },
 
-  // NEVER REMOVE THESE LINES, OR ELSE YOUR PROJECT MAY NOT WORK
-  require('./options/generatorOptions.js')(grunt);
-  grunt.loadTasks('tasks');
+
+        // Build scss to css
+        sass: {
+            dev: {
+                options: {
+                    // WebHook will minifiy, so we don't have to here
+                    style: 'expanded'
+                },
+                files: [{
+                    expand: 'true',
+                    cwd: 'scss',
+                    src: ['site.scss'],
+                    dest: 'static/css',
+                    ext: '.css'
+                }]
+            }
+        },
+
+        browserify: {
+            client: {
+                src: ['script/src/index.js'],
+                dest: 'static/javascript/site.js'
+            }
+        }
+
+  });
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-browserify');
+
+    // NEVER REMOVE THESE LINES, OR ELSE YOUR PROJECT MAY NOT WORK
+    require('./options/generatorOptions.js')(grunt);
+    grunt.loadTasks('tasks');
 };

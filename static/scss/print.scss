@@ -1,69 +1,35 @@
 @media print{
-	nav, input{
-		display:none;
-	}
-
-	body{
-		font-size:11pt;
-	}
-
-	button,
-	a.download{
-		display:none;
-	}
-	
 	.cv{
-		.contact-info{
-			display:block;
-			clear:both;
-			article{
-				width:50%;
-			}
+		overflow:visible;
+		h2,
+		.download,
+		button{
+			display:none;
 		}
-
-		p,
-		address{
-			font-size:10pt;
-			line-height:13pt;
-
-		}
-		h3{
-			font-size:9pt;
-		}
-		address{
-			float:left;
-			width:50%;
-		}
-		h2{
+		.activator{
 			display:none;
 		}
 		article{
-			margin-bottom:2em;
-			float:none;
-		}
-		a:link,a:visited{
-			border-bottom:none;
-		}
-		.dissertation-summary{
-			display:none;
-		}
-	}
+			margin-bottom:1em;
 
-	.nav-bar{
-		border-top:none;
-		margin-bottom:1rem;
-	}
-	
-	@page{
-		padding-bottom:72pt;
-		margin-top:63pt;
-		margin-right:1in;
- 		// size:5.5in 8.5in;
- 		
-	}
-	@page:first{
-		margin-top:36pt;
-		border-top:2px solid $link-color;
-	}
+			p,
+			h3{
+				font-size:10pt;
+				line-height:14pt;
+				color:red;
+			}
 
+			.entry-time-frame{
+				border:1px solid red;
+				width:15%;
+				float:left;
+			}
+			.entry-description{
+				border:1px solid blue;
+				width:70%;
+				float:left;
+				margin-left:1em;
+			}
+		}
+	}
 }
