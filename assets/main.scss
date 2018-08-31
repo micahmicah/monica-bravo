@@ -11,6 +11,10 @@ body{
 	background:black;
 	transition:all 0.4s ease-in-out;
 	-webkit-font-smoothing:antialiased;
+	font-family: "Starling Bk";
+    font-style: Normal;
+    font-weight: Normal;
+    font-feature-settings:"onum";
 
 	&.loaded{
 		background:white;
@@ -69,9 +73,11 @@ h1,h2,h3,h4,h5,h6,p,address,li{
 	color:$text-color;
 }
 
+.smcp{
+	font-feature-settings:"c2sc";
+}
+
 h1,p{
-	font-family:"Times New Roman", times, serif;
-	font-weight:normal;
 	font-size:1em;
 	
 	@media screen and (min-width:700px){
@@ -87,6 +93,7 @@ h1,p{
 
 h1{
 	margin-top:0;
+	font-weight:normal;
 }
 
 .home{
