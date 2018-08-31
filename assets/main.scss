@@ -8,11 +8,13 @@ $pop-color:rgb(18,239,178);
 body{
 	font-size:18px;
 	margin:2em;
-
+	background:black;
 	transition:all 0.4s ease-in-out;
 	-webkit-font-smoothing:antialiased;
 
 	&.loaded{
+		background:white;
+		transition:1.5s ease-in-out;
 		p,h1,img,li,address{
 			opacity:1;
 			transition-property:opacity;
@@ -59,6 +61,7 @@ a{
 	&:hover{
 		background:$text-color;
 		color:white;
+		transition:all 0.2s ease-in-out;
 	}
 }
 
@@ -76,6 +79,10 @@ h1,p{
 		max-width:25em;
 
 	}
+
+	@media screen and (min-width:1800px){
+		font-size:2.2em;
+	}
 }
 
 h1{
@@ -91,17 +98,17 @@ h1{
 		grid-column-gap:1em;
 	}
 
+	@media screen and (min-width:1800px){
+		grid-template-columns:1fr 4fr;
+	}	
 }
 
 .contact{
 	margin-bottom:1em;
 	a{
 		border-bottom:1px solid $text-color;
-
-		&:hover{
-			border-bottom:1px solid $pop-color;
-		}
 	}
+
 	p,address{
 		font-size:1em;
 		font-style:normal;
