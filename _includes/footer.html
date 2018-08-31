@@ -1,8 +1,31 @@
 <footer class="site-footer">
  
 <script type="text/javascript">
+
+	var allImages = $('img');
+	var allParagraphs = $('p');
+	var allH1 = $('h1');
+	var allAddress = $('address');
+	var allLists = $('li')
+
+	var allElements = [allImages, allParagraphs, allH1, allAddress, allLists];
+
+
+	function getRandomFloat(min, max) {
+	  return Math.random() * (max - min) + min;
+	}
+
   $(document).ready(function(){
     $('body').addClass('loaded');
+    $('.home').children().css('transition-duration','3s');
+
+
+    for (var i = 0; i < allElements.length; i++) {
+    	console.log(allElements[i]);
+    	allElements[i].css('transition-delay', getRandomFloat(0.5,2.5) + 's');
+    	allElements[i].css('transition-duration', getRandomFloat(0.3,2) + 's');
+    }
+
   });
 </script>
 </footer>
