@@ -76,9 +76,17 @@ h1{
 
 .contact{
 	margin-bottom:1em;
+	a{
+		border-bottom:1px solid $text-color;
+
+		&:hover{
+			border-bottom:1px solid $pop-color;
+		}
+	}
 	p,address{
 		font-size:1em;
 		font-style:normal;
+		line-height:1.33;
 	}
 	p{
 		margin-bottom:0;
