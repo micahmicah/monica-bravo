@@ -1,6 +1,6 @@
 ---
 layout: home
-headshot: /assets/uploads/monica-bravo-2000.jpg
+headshot: /assets/uploads/monica-bravo-2020-05-25.jpg
 bio: >-
   Assistant Professor of History and Theory of Photographic Media at [California
   College of the Arts](http://cca.edu/)
