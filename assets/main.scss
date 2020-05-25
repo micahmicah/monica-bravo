@@ -12,7 +12,6 @@ body{
 	font-size:20px;
 	margin:1.5em;
 	background:black;
-	// transition:background 0.4s ease-in-out;
 	-webkit-font-smoothing:antialiased;
 	font-family: "Starling Bk";
 	line-height:1.33;
@@ -37,7 +36,6 @@ body{
 
 	&.loaded{
 		background:white;
-		// transition:background 1.5s ease-in-out;
 		p,h1,img,li,address{
 			opacity:1;
 			transition-property:opacity;
@@ -102,6 +100,7 @@ h1,p{
 	@media screen and (min-width:700px){
 		font-size: 2em;
 		max-width:25em;
+		letter-spacing:-0.008em;
 
 	}
 
@@ -115,17 +114,18 @@ h1{
 	font-weight:normal;
 }
 
-.home{
+.bio{
 	
 
 	@media screen and (min-width:700px){
-		display:grid;
-		grid-template-columns:1fr 2fr;
-		grid-column-gap:1em;
+		// display:grid;
+		// grid-template-columns:1fr 2fr;
+		// grid-column-gap:1em;
+		margin-left:30vw;
 	}
 
 	@media screen and (min-width:1800px){
-		grid-template-columns:1fr 4fr;
+		// grid-template-columns:1fr 4fr;
 	}	
 }
 
@@ -143,6 +143,10 @@ h1{
 	}
 	p{
 		margin-bottom:0;
+	}
+
+	@media screen and (min-width: 700px){
+		position:fixed;
 	}
 }
 
