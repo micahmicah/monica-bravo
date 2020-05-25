@@ -1,8 +1,8 @@
 ---
 layout: home
 bio: >-
-  # Assistant Professor of History and Theory of Photographic Media at
-  [California College of the Arts](http://cca.edu/)
+  Assistant Professor of History and Theory of Photographic Media at [California
+  College of the Arts](http://cca.edu/)
 
 
   [Monica Bravo](mailto:bravo@cca.edu) specializes in the history of photography and the modern art of the Americas. Her current book project examines exchanges between U.S. modernist photographers and modern Mexican artists working in painting, poetry, music, and photography, resulting in the development of a Greater American Modernism in the interwar period. Her research has been supported by fellowships from the [Center for Advanced Study in the Visual Arts(CASVA)](https://www.nga.gov/research/casva.html), the [Center for Creative Photography](https://ccp.arizona.edu/), the [Georgia O’Keeffe Research Center](https://www.okeeffemuseum.org/research-center/), the [Harry Ransom Center](http://www.hrc.utexas.edu/), the [Huntington Library](http://www.huntington.org/WebAssets/Templates/general.aspx?id=17334) and [Art Collections](http://www.huntington.org/artcollections/), and the[Terra Foundation for American Art](https://www.terraamericanart.org/).
