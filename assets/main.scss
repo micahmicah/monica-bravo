@@ -6,20 +6,38 @@ $text-color: rgb(40,40,40);
 $pop-color:rgb(18,239,178);
 $gray:rgb(200,200,200);
 
+$small-font: "Starling Reg";
+
 body{
-	font-size:18px;
-	margin:2em;
+	font-size:20px;
+	margin:1.5em;
 	background:black;
-	transition:all 0.4s ease-in-out;
+	// transition:background 0.4s ease-in-out;
 	-webkit-font-smoothing:antialiased;
 	font-family: "Starling Bk";
+	line-height:1.33;
+
+
     font-style: Normal;
     font-weight: Normal;
     font-feature-settings:"onum";
+    @media screen and (min-width:600px){
+    	font-size:18px;
+
+    }
+
+    .bio{
+    	p:first-child{
+    		margin-top:0;
+    	}
+    }
+    em{
+    	font-family: "Starling BK It";
+    }
 
 	&.loaded{
 		background:white;
-		transition:1.5s ease-in-out;
+		// transition:background 1.5s ease-in-out;
 		p,h1,img,li,address{
 			opacity:1;
 			transition-property:opacity;
@@ -66,7 +84,7 @@ a{
 	&:hover{
 		background:$text-color;
 		color:white;
-		transition:all 0.2s ease-in-out;
+		transition:color 0.2s ease-in-out;
 	}
 }
 
@@ -112,6 +130,7 @@ h1{
 }
 
 .contact{
+	// font-family: "Starling Reg";
 	margin-bottom:1em;
 	a{
 		border-bottom:1px solid $gray;
@@ -130,6 +149,7 @@ h1{
 
 
 .credentials{
+	// font-family: "Starling Reg";
 	list-style:none;
 	padding-left:1.75em;
 	margin-bottom:1em;
