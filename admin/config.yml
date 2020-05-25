@@ -17,15 +17,16 @@ collections:
       - label: "Home"
         name: "index"
         file: "index.md"
+        preview: false
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Intro, name: intro, widget: markdown}
+          - {label: Bio, name: bio, widget: markdown}
           - {label: Headshot, name: headshot, widget: image}
           - {label: Links, name: links, widget: string}
-          - label: Team
-            name: team
+          - {label: Contact, name: contact, widget: markdown}
+          - label: Education
+            name: education
             widget: list
             fields:
-              - {label: Name, name: name, widget: string}
-              - {label: Position, name: position, widget: string}
-              - {label: Photo, name: photo, widget: image}
+              - {label: Item, name: item, widget: string}
+              # - {label: Position, name: position, widget: string}
+              # - {label: Photo, name: photo, widget: image}
