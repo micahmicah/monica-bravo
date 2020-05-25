@@ -16,8 +16,11 @@ layout: default
       {{page.contact | markdownify}}
     </address>
     <div class="social">
-      <p><a href="https://www.linkedin.com/in/monica-bravo-926745105" target="_blank">LinkedIn</a></br>
-      <a href="http://yale.academia.edu/MonicaBravo" target="_blank">Academia.edu</a></p>
+      <p>
+      {% for item in page.social_links %}
+        <a href="{{item.link.url}}">{{item.link.link_text}}</a><br>
+      {% endfor %}
+        </p>
     </div>
   </section>
 
@@ -25,14 +28,12 @@ layout: default
      {{page.bio | markdownify}}
 
       <ul class="credentials">
-        <li>B.A., Studio Art, Dartmouth College, Hanover, NH, 2004</li>
-        <li>M.A., Art History and Criticism, Stony Brook University,       Stony Brook, NY, 2009</li>
-        <li>Ph.D., History of Art and Architecture, Brown University,        Providence, RI, 2016</li>
+        {% for item in page.education %}
+          <li>{{item.item}}</li>
+        {% endfor %}
       </ul>
 
-      {% for item in page.education %}
-        {{item.item | markdownify}}
-      {% endfor %}
+     
 
   </section>
 
