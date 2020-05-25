@@ -20,20 +20,19 @@ collections:
         name: "index"
         file: "index.md"
         fields:
-          - {label: Bio, name: bio, widget: markdown}
           - {label: Headshot, name: headshot, widget: image}
-          - {label: Links, name: links, widget: string}
+          - {label: Bio, name: bio, widget: markdown}
           - {label: Contact, name: contact, widget: markdown}
-          # - label: Links
-          #   name: links
-          #   widget: list
-          #   fields:
-          #     - label: link
-          #       name: link
-          #       widget: object
-          #       fields:
-          #         - {label: link-url, name: url, widget: string}
-          #         - {label: link-text, name: link_text, widget: string} 
+          - label: Links
+            name: links
+            widget: list
+            fields:
+              - label: link
+                name: link
+                widget: object
+                fields:
+                  - {label: link-url, name: url, widget: string}
+                  - {label: link-text, name: link-text, widget: string} 
 
           - label: Education
             name: education
