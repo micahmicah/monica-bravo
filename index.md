@@ -1,5 +1,6 @@
 ---
 layout: home
+headshot: /assets/uploads/monica-bravo-2000.jpg
 bio: >-
   Assistant Professor of History and Theory of Photographic Media at [California
   College of the Arts](http://cca.edu/)
@@ -9,7 +10,6 @@ bio: >-
 
 
   Her writing has appeared in *History of Photography*,*The History of Illustration*, *caa.reviews*, and*Art Criticism*. Prior to coming to CCA, Bravo was a Lecturer at [Yale University](https://www.yale.edu/) in the [History of Art Department](https://arthistory.yale.edu/) and [Program in Ethnicity, Race, and Migration](https://erm.yale.edu/).
-headshot: /assets/uploads/monica-bravo-2000.jpg
 links: test
 contact: |-
   [bravo@cca.edu](mailto:bravo@cca.edu)
@@ -18,10 +18,19 @@ contact: |-
   1111 8th Street  
   San Francisco, CA  
   United States 94107
+social_links:
+  - link:
+      link_text: LinkedIn
+      url: https://www.linkedin.com/in/monica-bravo-926745105
+  - link:
+      url: http://yale.academia.edu/MonicaBravo
+      link_text: Academia.edu
 education:
-  - item: test
-  - item: testing
-  - item: another test
+  - item: B.A., Studio Art, Dartmouth College, Hanover, NH, 2004
+  - item: M.A., Art History and Criticism, Stony Brook University, Stony Brook, NY,
+      2009
+  - item: Ph.D., History of Art and Architecture, Brown University, Providence, RI,
+      2016
 ---
 
 testing
