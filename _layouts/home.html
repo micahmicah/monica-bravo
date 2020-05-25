@@ -31,8 +31,8 @@ layout: default
       </ul>
 
       {% for item in page.education %}
-    {{item | markdownify}}
-  {% endfor %}
+        {{item.item | markdownify}}
+      {% endfor %}
 
   </section>
 
