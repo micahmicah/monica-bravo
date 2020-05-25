@@ -21,7 +21,7 @@ contact: |-
 education:
   - item: test
   - item: testing
-
+  - item: another test
 ---
 
 testing
