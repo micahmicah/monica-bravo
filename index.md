@@ -26,6 +26,3 @@ education:
       RI, 2016
 ---
 
-Testing
-
-testing again.
