@@ -31,7 +31,8 @@ collections:
                 name: "link"
                 widget: object
                 fields:
-                  - {label: link-url, name: url, widget: string }
+                  - {label: Link URL, name: url, widget: string }
+                  - {label: Link Text, name: link_text, widget: string }
 
 
           - label: Education
