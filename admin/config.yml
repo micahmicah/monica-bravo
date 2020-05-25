@@ -13,11 +13,12 @@ collections:
 
   - label: "Pages"
     name: "pages"
+    editor:
+      preview: false
     files:
       - label: "Home"
         name: "index"
         file: "index.md"
-        preview: false
         fields:
           - {label: Bio, name: bio, widget: markdown}
           - {label: Headshot, name: headshot, widget: image}
