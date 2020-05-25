@@ -23,16 +23,16 @@ collections:
           - {label: Headshot, name: headshot, widget: image}
           - {label: Bio, name: bio, widget: markdown}
           - {label: Contact, name: contact, widget: markdown}
-          - label: Links
-            name: links
-            widget: list
+          - label: "Social Links"
+            name: "social_links"
+            widget: 'list'
             fields:
-              - label: link
-                name: link
+              - label: "link"
+                name: "link"
                 widget: object
                 fields:
-                  - {label: link-url, name: url, widget: string}
-                  - {label: link-text, name: link-text, widget: string} 
+                  - {label: link-url, name: url, widget: string }
+
 
           - label: Education
             name: education
