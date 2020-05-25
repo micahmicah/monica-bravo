@@ -5,12 +5,6 @@ backend:
   branch: gh-pages # Branch to update (optional; defaults to master)
 media_folder: 'assets/uploads'
 collections:
-  - name: 'blog'
-    label: 'Blog'
-    folder: '_posts/'
-    fields:
-      - { name: Title }
-
   - label: "Pages"
     name: "pages"
     editor:
