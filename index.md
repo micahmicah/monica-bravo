@@ -14,15 +14,14 @@ links: test
 contact: |-
   [bravo@cca.edu](mailto:bravo@cca.edu)
 
-  California College of the Arts\
-  1111 8th Street\
-  San Francisco, CA\
+  California College of the Arts  
+  1111 8th Street  
+  San Francisco, CA  
   United States 94107
 education:
-  - item: B.A., Studio Art, Dartmouth College, Hanover, NH, 2004
-  - item: M.A., Art History and Criticism, Stony Brook University,   Stony Brook,
-      NY, 2009
-  - item: Ph.D., History of Art and Architecture, Brown University,   Providence,
-      RI, 2016
+  - item: test
+  - item: testing
+
 ---
 
+testing
